@@ -4,7 +4,6 @@ body{
 .header{
     width: 100%;
     min-height: 100vh;
-    background-image: url(../Images/background.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -12,7 +11,6 @@ body{
 }
 
 .header:before{
-    content:'';
     width: 100%;
     min-height: 100vh;
     position: absolute;
@@ -29,9 +27,10 @@ body{
 .gris{
     background: rgba(73,73,73, .1);
 }
-
 .top-nav-collapse{
     background: rgba(73,73,73, .999)!important;
+    
+    
 }
 @media (min-width: 768px){
     .bg-dark{
@@ -46,32 +45,10 @@ body{
     padding: 10px 25px;
     text-align: center;
     text-transform: uppercase;
-    
 }
 
 .navg a:hover{
     background-color: #C10000; 
-}
-
-.text-header{
-    min-height: 100vh;
-    color:#F4F4F4;
-    font-family: 'Montserrat';
-}
-
-.text-header h2{
-    font-family: 'Anton';
-}
-
-.text-header span{
-    letter-spacing: 5px;
-    font-size: 1.3em;
-    font-family: 'Anton';
-    margin: 0 0 0 5px
-}
-
-.text-header p{
-    font-size: 1em;
 }
 
 .btn-yo{
@@ -84,8 +61,37 @@ body{
     color: #F4F4F4;
     background-color: #A40101;
 }
-
-.mt-6{
+.col-md-3{
+    padding-top: 20px;
+}
+.mt-3{
     text-align: justify;
     margin-top:4rem;
+}
+
+.container{
+    width: 100%;
+}
+
+.mt-3#precio{
+    padding-left: 90px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.mt-3#local{
+    padding-left: 190px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.mt-3#agenda{
+    padding-left: 250px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.footer{
+    color:#FFFFFF;
+    background: #222222;
 }
