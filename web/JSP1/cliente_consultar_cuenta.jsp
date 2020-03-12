@@ -31,11 +31,12 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div class=" navg navbar-nav w-100 justify-content-center ">
-                                <a class="nav-item nav-link active waves-effect waves-light" href="../index.html">Inicio</a>
-                                <a class="nav-item nav-link waves-effect waves-light" href="index_servicios.jsp">Servicios</a>
-                                <a class="nav-item nav-link waves-effect waves-light" href="iniciar_sesion.jsp">Iniciar Sesión</a>
-                                <a class="nav-item nav-link waves-effect waves-light" href="#">Contacto</a>
+                            <div class=" navg navbar-nav w-100 justify-content-center " >
+                                <a class="nav-item nav-link active" href="../index.html">Inicio</a>
+                                <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
+                                <a class="nav-item nav-link" href="#">Catalogo</a>
+                                <a class="nav-item nav-link" href="index_cliente.jsp">Mi cuenta</a>
+                                <a class="nav-item nav-link" href="#">Contacto</a>
                             </div>
                         </div>
                     </nav>

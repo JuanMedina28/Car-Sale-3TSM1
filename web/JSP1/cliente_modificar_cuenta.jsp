@@ -26,8 +26,9 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class=" navg navbar-nav w-100 justify-content-center " >
-                                <a class="nav-item nav-link active" href="../index.html">inicio</a>
-                                <a class="nav-item nav-link" href="../HTML/servicios.html">Servicios</a>
+                                <a class="nav-item nav-link active" href="../index.html">Inicio</a>
+                                <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
+                                <a class="nav-item nav-link" href="#">Catalogo</a>
                                 <a class="nav-item nav-link" href="index_cliente.jsp">Mi cuenta</a>
                                 <a class="nav-item nav-link" href="#">Contacto</a>
                             </div>

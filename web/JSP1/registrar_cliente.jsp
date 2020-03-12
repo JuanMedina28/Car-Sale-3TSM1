@@ -84,34 +84,6 @@
                                                 <input name="confirm_password" type="password" class="form-control" id="email" placeholder="************" value=""><br>
                                             </div>
                                         </div>
-
-                                        <h4>Datos bancarios</h4>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tipo de tarjeta</label>
-                                                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="tp_tarjeta">
-                                                    <option selected>Elige una opción</option>
-                                                    <option value="Credito">Credito</option>
-                                                    <option value="Debito">Debito</option>
-                                                </select>
-                                            </div>
-                                        </div><br>
-                                        <div class="row">
-                                            <div class="col-8">
-                                                <label for="correo">No. Tarjeta</label>
-                                                <input name="no_tarjeta" type="text" class="form-control" id="email" placeholder="Ej:5909809765452123" value=""><br>
-                                            </div>
-                                            <div class="col-4">
-                                                <label for="correo">CVV</label>
-                                                <input name="cvv" type="text" class="form-control" id="email" placeholder="Ej:590" value=""><br>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                        <div class="col-4">
-                                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref" for="correo">Fech. Vencimiento</label>
-                                            <input name="fecha_venci" type="date" class="form-control" id="email" placeholder="Ej:19-12-28" value=""><br>
-                                        </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <button class="btn btn-danger" type="submit">Registarse ahora</button>
