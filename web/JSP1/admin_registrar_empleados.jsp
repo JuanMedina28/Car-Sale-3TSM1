@@ -66,11 +66,27 @@
                                                 <label for="nombre">Correo electrónico</label>
                                                 <input name="correo" type="email" class="form-control" id="nombre" placeholder="correo@dominio.com" value=""><br>
                                             </div>
+                                            
                                             <div class="col-4">
                                                 <label for="nombre">Telefono</label>
                                                 <input name="telefono" type="text" class="form-control" id="nombre" placeholder="Ej:55-3463-4867" value=""><br>
                                             </div>
                                         </div>
+                                        
+                                        
+                                         
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Ingresar Contraseña</label>
+                                                <input name="pass" type="password" class="form-control" id="pass" placeholder="********" value="">
+                                            </div>
+                                            <div class="col-4">
+                                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Ingresar de Nuevo</label>
+                                                <input name="pass2" type="password" class="form-control" id="pass2" placeholder="********" value="">
+                                            </div>
+                                        </div><br>
+                                        
+                                        
                                         <h4>Dirección</h4>
                                         <div class="row">
                                             <div class="col-4">
@@ -117,10 +133,12 @@
                                                 </select>
                                             </div>
                                         </div><br>
+                                        
                                         <div class="col-4">
                                             <label for="correo">Sueldo</label>
                                             <input name="sueldo" type="text" class="form-control" id="email" placeholder="Ej:5900" value=""><br>
                                         </div>
+                                        
                                     </div>
                                 </div>
                                 <button class="btn btn-danger" type="submit">Registar empleado</button>
