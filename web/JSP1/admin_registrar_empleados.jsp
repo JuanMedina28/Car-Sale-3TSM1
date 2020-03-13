@@ -19,16 +19,19 @@
         <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat&display=swap" rel="stylesheet">
     </head>
     <body>
-     <%             
+   
+        <%            
             String nombre = request.getParameter("nombre");
             String ap_pat = request.getParameter("apellidopat");
             String ap_mat = request.getParameter("apellidomat");
-            String email = request.getParameter("email");
-            String password = request.getParameter("confirm_password");
+            String email = request.getParameter("correo");
+            String password = request.getParameter("pass");
             String telefono = request.getParameter("telefono");
+            String tipo_usu = request.getParameter("puesto");
             
+
             if (nombre != null) {
-                String qry = "INSERT INTO usuario(nombre, apellido_paterno,apellido_materno,correo_electronico,clave,no_telefono) values ('" + nombre + "','" +ap_pat+ "','" + ap_mat + "','" + email + "','" + password + "','" + telefono + "')";
+                String qry = "INSERT INTO usuario(nombre, apellido_paterno,apellido_materno,correo_electronico,clave,no_telefono,tipo_usuario) values ('" + nombre + "','" + ap_pat + "','" + ap_mat + "','" + email + "','" + password + "','" + telefono + "','" + tipo_usu + "')";
                 sql.executeUpdate(qry);
 
             }
@@ -170,45 +173,5 @@
 
         </div>
         
-         <script language="JavaScript">
-
-                              function validar(){
-                                            var expresion;
-                                    expresion = /\w+@\w+\.+[a-z]/;
-                                    
-                                    if (document.form1.nombre.value === "" || document.form1.txtnom.nombre.length > 35)
-                                    {
-                                    alert("El nombre esta vacio o supera los 35 caracteres");
-                                    return false;
-                                     } else if(document.form1.apellidopat.value===""||document.form1.apellidopat.value.length>20){
-                                    alert("El apellido paterno esta vacio o supera los 20 caracteres");
-                                    return false;
-                                    }
-
-                                     else if (document.form1.apellidomat.value === "" || document.form1.apellidomat.value.length > 20){
-                                    alert("El apellido materno esta vacio o supera los 20 caracteres");
-                                    return false;
-                                    } else if (document.form1.correo.value === "" || document.form1.correo.value.length > 20){
-                                    alert("El correo esta vacio o supera los 10 caracteres");
-                                    return false;
-                                    }
-
-
-                                    else if (document.form1.telefono.value === "" || document.form1.telefono.value.length > 16){
-                                    alert("La contaseña esta vacia o tiene mas de 16 caracteres");
-                                    return false;
-                                    } else if (document.form1.txtcalle.value === "" || document.form1.txtcalle.value.length > 50){
-                                    alert("No se coloco el numero de calle o supera los 50 caracteres");
-                                    return false;
-                                    } else if (document.form1.txtcolonia.value === "" || document.form1.txtcolonia.value.length > 50){
-                                    alert("No se coloco el numero de colonia o supera los 50 caracteres");
-                                    return false;
-                                    } else if (document.form1.txtmuni.value === "" || document.form1.txtmuni.value.length > 30){
-                                    alert("No se coloco el numero de municipio o supera los 50 caracteres");
-                                    return false;
-                                   }
-                               }
-
-                                    </script>
     </body>
 </html>

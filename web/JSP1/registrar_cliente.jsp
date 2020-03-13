@@ -17,19 +17,21 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/css/mdb.min.css" rel="stylesheet">
         <link rel="stylesheet" href="../CSS/regisemcss.css" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat&display=swap" rel="stylesheet">
+
+ 
     </head>
     <body>
-        
-        <%             
+
+        <%            
             String nombre = request.getParameter("nombre");
             String ap_pat = request.getParameter("apellidopat");
             String ap_mat = request.getParameter("apellidomat");
-            String telefono = request.getParameter("telefono");
             String email = request.getParameter("email");
             String password = request.getParameter("confirm_password");
-
+            String telefono = request.getParameter("telefono");
+            
             if (nombre != null) {
-                String qry = "INSERT INTO cliente(nombre_u, apellido_paterno,apellido_materno,no_telefono,correo_electronico,clave) values ('" + nombre + "','" + ap_pat + "','" + ap_mat + "','" + telefono + "','" + email + "','" + password + "')";
+                String qry = "INSERT INTO usuario(nombre, apellido_paterno,apellido_materno,correo_electronico,clave,no_telefono) values ('" + nombre + "','" + ap_pat + "','" + ap_mat + "','" + email + "','" + password + "','" + telefono + "')";
                 sql.executeUpdate(qry);
 
             }
@@ -62,7 +64,7 @@
                     <div class="card shadow-lg p-3 mb-5 bg-white">
                         <div class="card-header"><h3>Registrarte Ahora!</h3></div>
                         <div class="card-body">
-                            <form name="form1" id="form1" action="#" method="post" class="needs-validation">
+                            <form name="formcliente" id="form1" action="#" method="post" class="needs-validation">
                                 <div class="form-row">
                                     <div class="col-md4 mb-3">
                                         <h4>Datos personales</h4>
@@ -105,65 +107,20 @@
                                         </div>
                                     </div><br>
                                 </div>
-                                
-                                <button class="btn btn-danger" type="submit" onclick="validar();">Registarse Ahora</button>
+
+                                <button class="btn btn-danger" type="sutmit" onclick="validar();">Registarse Ahora</button>
                             </form>
                             <a href="index.html"><button type="button" class="btn btn-dark"  style="width: 20%; margin-left: 30%; margin-top: -8%">Regresar</button></a>
                             <br>
+                        </div>
                     </div>
                 </div>
             </div>
-                </div>
-      
+
         </div>
-        <script language="JavaScript">
-		function validar()
-		{
-                    var expresion;
-                    
-                    expresion = /\w+@\w+\.+[a-z]/;
-                    
-                    
-                if(document.form1.nombre.value===""||document.form1.nombre.value.length>35)
-                {
-                    alert("El nombre esta vacio o supera los 35 caracteres");
-                    return false;
-                } else if(document.form1.apellidopat.value===""||document.form1.apellidopat.value.length>20){
-                    alert("El apellido paterno esta vacio o supera los 20 caracteres");
-                    return false;
-                }  else if(document.form1.apellidomat.value===""||document.form1.apellidomat.value.length>20){
-                    alert("El apellido materno esta vacio o supera los 20 caracteres");
-                    return false;
-                } else if(document.form1.telefono.value===""||document.form1.telefono.value.length>10){
-                    alert("El telefono esta vacio o supera los 10 caracteres");
-                    return false;
-                } else if(document.form1.email.value===""||document.form1.email.value.length>30){
-                    alert("El email esta vacio o el correo es mayor de 100 caracteres");
-                    return false;
-                }else if(document.form1.password.value===""||document.form1.password.value.length>16){
-                    alert("La contaseña esta vacia o tiene mas de 16 caracteres");
-                    return false;
-                }else if(document.form1.confirm_password.value!==document.form1.password.value){
-                    alert("La contraseñas no coinciden");
-                    return false;
-                }else if (isNaN(document.form1.txttel.value)) {
-                        alert("El numero telefonico no es un numero");
-                        return false;
-                }else if(!expresion.test(document.form1.txtemail.value)){
-		alert("Correo invalido");
-		return false;
-                }
-                
-                
+        
+ 
 
-
-
-
-
-           }
-              
-	</script>
-              
 
     </body>
 </html>
