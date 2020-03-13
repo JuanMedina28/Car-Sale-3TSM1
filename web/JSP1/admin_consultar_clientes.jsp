@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="conexion.jsp" %>
 <!doctype html>
 <html lang="Spanish">
     <head>
@@ -37,15 +39,19 @@
             <div class="alert alert-primary" role="alert" style="width: 50%; margin-left: 25%;"><h4 style="margin-left: 15%;">Buscar por campo:</h4>
                 <form action="consultas-empleados.html" method="post">
                     <select class="form-control form-control-sm" style="width: 30%; margin-left: 15%; margin-top: 2%;" name="filtro">
-                        <option selected>Elige una opcion</option>
+                        <option selected>Elige una Opcion</option>
                         <option value="nombre">Nombre</option>
                         <option value="correo">Correo</option>
                         <option value="telefono">Telefono</option>
                     </select>
                     <button type="button" class="btn btn-outline-primary" style="margin-left: 50%; margin-top: -6%; height: 40px;">Buscar</button>
                 </form>
-                <a href="index_admin.jsp"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-top: -12%; height: 40px;">Regresar</button></a>
+                <a href="index_admin.jsp"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-top: -14%; height: 40px;">Regresar</button></a>
             </div>
+             <%                
+                String qry = "select * from usuario";
+                ResultSet datas = sql.executeQuery(qry);
+            %>
             <div style="display: inline-table">
                 <table class="table table-hover table-dark" style="position: absolute; width: 70%; margin-left: 15%;">
                     <thead>
@@ -57,27 +63,21 @@
                             <th scope="col">Nombres(s)</th>
                             <th scope="col">Aepllido Paterno</th>
                             <th scope="col">Apellido Materno</th>
-                            <th scope="col">Correo Electrónico</th>
-                            <th scope="col">No. Teléfono</th>
+                            <th scope="col">Correo ElectrÃ³nico</th>
+                            <th scope="col">No. TelÃ©fono</th>
                         </tr>
                     </thead>
+                    <% while (datas.next()) {%>
                     <tbody>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Edgar Gabriel</td>
-                            <td>Hernandez</td>
-                            <td>Sanchez</td>
-                            <td>edgarfto@gmail.com</td>
-                            <td>5572779113</td>
+                         <td><% out.print(datas.getString(1)); %></td>
+                            <td><% out.print(datas.getString(2)); %></td>
+                            <td><% out.print(datas.getString(3)); %></td>
+                            <td><% out.print(datas.getString(4)); %></td>
+                            <td><% out.print(datas.getString(5)); %></td>
+                            <td><% out.print(datas.getString(7)); %></td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Aletz Santiago</td>
-                            <td>Davila</td>
-                            <td>Menez</td>
-                            <td>aletz@gmail.com</td>
-                            <td>5599882272</td>
-                        </tr>
+                        <% }%>
                     </tbody>
                 </table>
             </div>

@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="conexion.jsp" %>
 <!doctype html>
 <html lang="Spanish">
     <head>
@@ -46,6 +48,10 @@
                 </form>
                 <a href="index_admin.jsp"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-top: -12%; height: 40px;">Regresar</button></a>
             </div>
+             <%                
+                String qry = "select * from usuario";
+                ResultSet datas = sql.executeQuery(qry);
+            %>
             <div style="display: inline-table">
                 <table class="table table-hover table-dark" style="position: absolute; width: 85%; margin-left: 7.5%;">
                     <thead>
@@ -61,54 +67,34 @@
                             <th scope="col">Nombres(s)</th>
                             <th scope="col">Aepllido Paterno</th>
                             <th scope="col">Apellido Materno</th>
-                            <th scope="col">Correo ElectrÛnico</th>
-                            <th scope="col">No. TelÈfono</th>
+                            <th scope="col">Correo Electr√≥nico</th>
+                            <th scope="col">No. Tel√©fono</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Municipio</th>
-                            <th scope="col">CÛdigo Postal</th>
+                            <th scope="col">C√≥digo Postal</th>
                             <th scope="col">Colonia</th>
                             <th scope="col">Calle</th>
                             <th scope="col">Puesto</th>
-                            <th scope="col">¡rea</th>
+                            <th scope="col">√Årea</th>
                             <th scope="col">Sueldo</th>
                             <th scope="col">Editar</th>
                         </tr>
                     </thead>
+                    <% while (datas.next()) {%>
                     <tbody>
+                       
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Edgar Gabriel</td>
-                            <td>Hernandez</td>
-                            <td>Sanchez</td>
-                            <td>edgarfto@gmail.com</td>
-                            <td>5572779113</td>
-                            <td>Edo. de Mex.</td>
-                            <td>Tecamac</td>
-                            <td>55748</td>
-                            <td>Fracc. Santa Lucia</td>
-                            <td>Priv. Robles</td>
-                            <td>Jefe</td>
-                            <td>Ventas</td>
-                            <td>$25,000</td>
+                            <td><% out.print(datas.getString(1)); %></td>
+                            <td><% out.print(datas.getString(2)); %></td>
+                            <td><% out.print(datas.getString(3)); %></td>
+                            <td><% out.print(datas.getString(4)); %></td>
+                            <td><% out.print(datas.getString(5)); %></td>
+                            <td><% out.print(datas.getString(7)); %></td>
+                           
+                            
                             <td><a href="admin_modificar_empleados.jsp"><img src="../Icons/ic_create_white_36dp.png"></a></td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Aletz Santiago</td>
-                            <td>Davila</td>
-                            <td>Menez</td>
-                            <td>aletz@gmail.com</td>
-                            <td>5599882272</td>
-                            <td>Edo. de Mex.</td>
-                            <td>Tecamac</td>
-                            <td>55748</td>
-                            <td>Fracc. Santa Lucia</td>
-                            <td>Priv. Robles</td>
-                            <td>Jefe</td>
-                            <td>Ventas</td>
-                            <td>$25,000</td>
-                            <td><a href="admin_modificar_empleados.jsp"><img src="../Icons/ic_create_white_36dp.png"></a></td>
-                        </tr>
+                    <% }%>
                     </tbody>
                 </table>
             </div>
