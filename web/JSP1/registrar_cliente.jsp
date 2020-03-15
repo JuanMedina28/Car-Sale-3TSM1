@@ -64,7 +64,7 @@
                     <div class="card shadow-lg p-3 mb-5 bg-white">
                         <div class="card-header"><h3>Registrarte Ahora!</h3></div>
                         <div class="card-body">
-                            <form name="formcliente" id="form1" action="#" method="post" class="needs-validation">
+                            <form name="formcliente" id="form1" action="#" method="post" class="needs-validation" onsubmit="return validar();">
                                 <div class="form-row">
                                     <div class="col-md4 mb-3">
                                         <h4>Datos personales</h4>
@@ -85,30 +85,30 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <label for="nombre">Telefono</label>
-                                                <input name="telefono" type="text" class="form-control" id="nombre" placeholder="Ej:55-3463-4867" value=""><br>
+                                                <input name="telefono" type="text" class="form-control" id="telefono" placeholder="Ej:55-3463-4867" value=""><br>
                                             </div>
                                         </div>
                                         <h4>Datos de la Cuenta</h4>
                                         <div class="row">
                                             <div class="col-8">
                                                 <label for="nombre">Correo</label>
-                                                <input name="email" type="text" class="form-control" id="nombre" placeholder="correo@dominio.com" value=""><br>
+                                                <input name="email" type="text" class="form-control" id="email" placeholder="correo@dominio.com" value=""><br>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-4">
                                                 <label for="correo">Contraseña</label>
-                                                <input name="password" type="password" class="form-control" id="email" placeholder="************" value=""><br>
+                                                <input name="password" type="password" class="form-control" id="password" placeholder="************" value=""><br>
                                             </div>
                                             <div class="col-4">
                                                 <label for="correo">Confirmar contraseña</label>
-                                                <input name="confirm_password" type="password" class="form-control" id="email" placeholder="************" value=""><br>
+                                                <input name="confirm_password" type="password" class="form-control" id="confirm_password" placeholder="************" value=""><br>
                                             </div>
                                         </div>
                                     </div><br>
                                 </div>
 
-                                <button class="btn btn-danger" type="sutmit" onclick="validar();">Registarse Ahora</button>
+                                <button class="btn btn-danger" type="sutmit">Registarse Ahora</button>
                             </form>
                             <a href="index.html"><button type="button" class="btn btn-dark"  style="width: 20%; margin-left: 30%; margin-top: -8%">Regresar</button></a>
                             <br>
@@ -118,6 +118,60 @@
             </div>
 
         </div>
+        <script language="JavaScript">
+
+		function validar()
+		{
+                  var nombre, apellidopat, apellidomat, telefono, email, password, confirm_password;
+                    
+                    expresion = /\w+@\w+\.+[a-z]/;
+                   
+                   nombre = document.getElementById("nombre").value;
+                   apellidopat = document.getElementById("apellidopat").value;
+                    apellidomat = document.getElementById("apellidomat").value;
+                    telefono = document.getElementById("telefono").value;
+                    email = document.getElementById("email").value;
+                    password = document.getElementById("password").value;
+                    confirm_password = document.getElementById("confirm_password").value;
+                   
+               if( nombre===""||nombre.length>35){
+		alert("El nombre esta vacio o esta superando los 35 caracteres");
+		return false;
+                }   
+                else if( apellidopat===""||apellidopat.length>20){
+		alert("El apellido paterno esta vacio o supera los 20 caracteres");
+		return false;
+                }
+                else if( apellidomat===""||apellidomat.length>20){
+                        alert("El apellido materno esta vacio o supera los 20 caracteres");
+                        return false;
+                }
+                else if( telefono===""||telefono.length>10){
+                        alert("El telefono esta vacio o supera los 10 caracteres");
+                        return false;
+                }else if( email===""||email.length>30){
+                        alert("El email esta vacio o supera los 30 caracteres");
+                        return false;
+                }
+                else if( password===""||password.length>16){
+                        alert("La contraseña esta vacia o supera los 16 caracteres");
+                        return false;
+                }
+                else if( confirm_password!==password){
+                        alert("Las contraseñas no coinciden");
+                        return false;
+                }
+                 else if (isNaN(telefono)) {
+                        alert("El telefono no es un numero");
+                        return false;
+                }
+                else if(!expresion.test(email)){
+                        alert("Correo invalido");
+                        return false;
+                }           
+                    
+                }
+        </script>
         
  
 
