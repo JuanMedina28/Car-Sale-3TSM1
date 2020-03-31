@@ -1,0 +1,70 @@
+form {
+    position: relative;
+    margin: 12px;
+    padding-left: 12px;
+    padding-top: 12px;
+    width: 395px;
+    height: 370px;
+    position: absolute;
+    left: 200px;
+    top: 150px;
+    background: #87CEEB;
+}
+
+.boton {
+    position: absolute;
+    left: 180px;
+    top: auto;
+
+    padding: 5px;
+
+    font: bold .6em sans-serif;
+    border: 2px solid #333;
+    border-radius: 5px;
+    background: none;
+
+    cursor: pointer;
+}
+
+input {
+    border-radius: 10px;
+}
+
+select {
+    border-radius: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 12px;
+    padding: 2px;
+    position: absolute;
+    left: 1000px;
+    top: 25px;
+}
+
+nav li a:hover {
+    background: #FFF5EE;
+}
+
+nav li a {
+    padding: 0px 40px;
+    color: #000000;
+    background: #AFEEEE;
+    height: 35px;
+    padding-top: 15px;
+    float: left;
+    border-radius: 15px;
+    margin-left: 10px;
+    text-decoration: none
+}
+
+body {
+    background: #E0FFFF; 
+    width: 95%;
+    margin: auto;
+    min-width: 600px;
+    max-width: 1900px;
+    font-family: "arial";
+}
