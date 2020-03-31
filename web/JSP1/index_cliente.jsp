@@ -48,7 +48,7 @@
                                 <h4>Mi cuenta</h4>
                                 <div style="margin-left: 15%;">
                                     <a href="cliente_consultar_cuenta.jsp"><button type="button" class="btn btn-success"  style="width: 25%">Consultar</button></a>
-                                    <a href="cliente_consultar_cuenta.jsp"><button type="button" class="btn btn-info"  style="width: 25%">Modificar</button></a>
+                                    <a href="cliente_modificar_cuenta.jsp"><button type="button" class="btn btn-info"  style="width: 25%">Modificar</button></a>
                                 </div><br>
                             </form>
                             <a href="../index.html"><button type="button" class="btn btn-dark"  style="width: 25%">Cerrar Sesion</button></a>

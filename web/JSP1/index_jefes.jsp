@@ -49,7 +49,7 @@
                                 <div style="margin-left: 15%;">
                                     <a href="#"><button type="button" class="btn btn-success" style="width: 25%" disabled>Registrar</button></a>
                                     <a href="jefes_consultar_empleados.jsp"><button type="button" class="btn btn-info"  style="width: 25%">Consultar</button></a>
-                                    <a href="jefes_consultar_empleados.jsp"><button type="button" class="btn btn-danger"  style="width: 25%">Modificar</button></a>
+                                    <a href="jefes_modificar_empleados.jsp"><button type="button" class="btn btn-danger"  style="width: 25%">Modificar</button></a>
                                 </div><br>
                                 <h4>Proximamente</h4>
                                 <div style="margin-left: 15%;">
