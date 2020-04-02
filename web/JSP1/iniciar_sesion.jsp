@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="conexion.jsp" %>
 <!DOCTYPE html>
 <html lang="Spanish">
     <head>
@@ -15,18 +16,35 @@
     <script  src = " https://use.fontawesome.com/releases/v5.0.7/js/all.js " > </script>
     </head>
     <body>
+                <%            
+              String varuser = request.getParameter("txtemail");
+            String varpass = request.getParameter("txtpass");
+            if(varuser!=null && varpass!=null){
+                String qry="select * from usuario where correo_electronico='"+varuser+"'"+" AND clave='"+varpass+"'";
+                ResultSet data = sql.executeQuery(qry);
+                if(data.next()){
+                    String nevel = data.getString(2);
+                    HttpSession sesion_act = request.getSession();
+                    sesion_act.setAttribute("user",varuser);
+                    sesion_act.setAttribute("nombre",data.getString(1));
+                    response.sendRedirect("index_cliente.jsp");
+                }
+            }
+
+        %>
+
         <div class="modal-dialog text-center">
             <div class="col-sm-8 main-section">
                 <div class="modal-content">
                     <div class="col-12 user-img">
                         <img src="../Images/186313.png" width="200" height="200">
                     </div>
-                    <form class="col-12">
+                    <form class="col-12" method="post" action="iniciar_sesion.jsp">
                         <div class="form-group" id="user-group">
-                            <input type="email" class="form-control" placeholder="Correo de usuario">                        
+                            <input type="email" name="txtemail" class="form-control" placeholder="Correo de usuario">                        
                         </div>
                         <div class="form-group" id="contra-group">
-                            <input type="password" class="form-control" placeholder="Contrasena">                        
+                            <input type="password" name="txtpass" class="form-control" placeholder="Contrasena">                        
                         </div>
                         <button type="submit" class="btn btn-danger"><i class="fas fa-sign-in-alt"></i>  Ingresar</button>
                     </form>

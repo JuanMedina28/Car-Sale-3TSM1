@@ -50,6 +50,10 @@
                 </form>
                 
             </div>
+             <%                
+                String qry = "select * from automovil";
+                ResultSet datas = sql.executeQuery(qry);
+            %>
            
             <div style="display: inline-table">
                 <table class="table table-hover table-dark" style="position: absolute; width: 70%; margin-left: 15%;">
@@ -67,18 +71,20 @@
                             <th scope="col">Total</th>
                         </tr>
                     </thead>
+                    <% while (datas.next()) {%>
                    
                     <tbody>
                         <tr>
                          <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><% out.print(datas.getString(1)); %></td>
+                            <td><% out.print(datas.getString(2)); %></td>
+                            <td><% out.print(datas.getString(3)); %></td>
+                            <td><% out.print(datas.getString(4)); %></td>
+                            <td><% out.print(datas.getString(5)); %></td>
+                            <td><% out.print(datas.getString(7)); %></td>
+                           
                         </tr>
-                        
+                        <% }%>
                     </tbody>
                 </table>
             </div>

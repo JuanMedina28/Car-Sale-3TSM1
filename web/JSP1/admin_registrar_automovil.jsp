@@ -25,7 +25,22 @@
         <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat&display=swap" rel="stylesheet">
     </head>
     <body>
-        
+                <%            
+            String serie = request.getParameter("serie");
+            String marca = request.getParameter("marca_auto");
+            String modelo = request.getParameter("modelo_auto");
+            String color = request.getParameter("color_auto");
+            String subtotal = request.getParameter("suntotal_auto");
+            String total = request.getParameter("total_auto");
+
+            if (serie != null) {
+                String qry = "INSERT INTO automovil(no_serie,marca,modelo,color,subtotal,total) values ('" + serie + "','" + marca + "','" + modelo + "','" + color + "','" + subtotal + "','" + total + "')";
+                sql.executeUpdate(qry);
+
+            }
+
+
+        %>
         
                 <header class="header" style="height: 70px">
             <div class="bg-dark">
@@ -61,12 +76,12 @@
                                         <div class="row">
                                             <div class="col-8">
                                                 <label for="nombre">No. Serie</label>
-                                                <input name="seriea" type="text" class="form-control" id="seriea" placeholder="Ej. 1GNCS13Z6M0246591" value=""><br>
+                                                <input name="serie" type="text" class="form-control" id="seriea" placeholder="Ej. 1GNCS13Z6M0246591" value=""><br>
                                             </div>
                                             
                                             <div class="col-4">
                                                 <label for="nombre">Marca</label>
-                                                <input name="amarca" type="text" class="form-control" id="amarca" placeholder="Ej. Chevrolet" value=""><br>
+                                                <input name="marca_auto" type="text" class="form-control" id="amarca" placeholder="Ej. Chevrolet" value=""><br>
                                             </div>
                                         </div>
                                         
@@ -75,11 +90,11 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Modelo</label>
-                                                <input name="amodelo" type="text" class="form-control" id="amodelo" placeholder="Ej. Camaro" value="">
+                                                <input name="modelo_auto" type="text" class="form-control" id="amodelo" placeholder="Ej. Camaro" value="">
                                             </div>
                                             <div class="col-4">
                                                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Color</label>
-                                                <input name="acolor" type="text" class="form-control" id="acolor" placeholder="Ej. Azul" value="">
+                                                <input name="color_auto" type="text" class="form-control" id="acolor" placeholder="Ej. Azul" value="">
                                             </div>
                                         </div><br>
                                         
@@ -88,11 +103,11 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <label >Subtotal</label>
-                                                <input name="asubt" type="text" class="form-control" id="asubt" placeholder="&#36;00.00" value=""><br>
+                                                <input name="subtotal_auto" type="text" class="form-control" id="asubt" placeholder="&#36;00.00" value=""><br>
                                             </div>
                                             <div class="col-4">
                                                 <label for="nombre">Total</label>
-                                                <input name="atotal" type="text" class="form-control" id="atotal" placeholder="&#36;00.00" value="">
+                                                <input name="total_auto" type="text" class="form-control" id="atotal" placeholder="&#36;00.00" value="">
                                             </div>
                                             
                                         </div>

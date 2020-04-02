@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="conexion.jsp" %>
 <!DOCTYPE html>
 <html lang="Spanish">
     <head>
@@ -54,6 +55,11 @@
                 </form>
                 <a href="index_jefes.jsp"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-top: -12%; height: 40px;">Regresar</button></a>
             </div>
+              <%                
+                String qry = "select * from automovil";
+                ResultSet datas = sql.executeQuery(qry);
+            %>
+           
             <div style="display: inline-table">
                 <table class="table table-hover table-dark" style="position: absolute; width: 85%; margin-left: 7.5%;">
                     <thead>
@@ -78,38 +84,21 @@
                             <th scope="col">Total</th>
                         </tr>
                     </thead>
+                    <% while (datas.next()) {%>
+                    
                     <tbody>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>5457247</td>
-                            <td></td>
-                            <td>Spark-2018</td>
-                            <td></td>
-                            <td>Chevrolet</td>
-                            <td></td>
-                            <td>Blanco</td>
-                            <td></td>
-                            <td>$152,000</td>
-                            <td></td>
-                            <td>$195,000</td>
-                            
+                             <td><% out.print(datas.getString(1)); %></td>
+                            <td><% out.print(datas.getString(2)); %></td>
+                            <td><% out.print(datas.getString(3)); %></td>
+                            <td><% out.print(datas.getString(4)); %></td>
+                            <td><% out.print(datas.getString(5)); %></td>
+                            <td><% out.print(datas.getString(7)); %></td>
+                           
                             <td><a href="jefes_modificar_autos.jsp"><img src="../Icons/ic_create_white_36dp.png"></a></td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>5574453</td>
-                            <td></td>
-                            <td>Corvette-2020</td>
-                            <td></td>
-                            <td>Chevrolet</td>
-                            <td></td>
-                            <td>Azul</td>
-                            <td></td>
-                            <td>$1,159,000</td>
-                            <td></td>
-                            <td>$2,220,000</td>
-                            <td><a href="jefes_modificar_autos.jsp"><img src="../Icons/ic_create_white_36dp.png"></a></td>
-                        </tr>
+                        <% }%>
+                    
                     </tbody>
                 </table>
             </div>

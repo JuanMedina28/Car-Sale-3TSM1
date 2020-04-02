@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="conexion.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,6 +24,22 @@
         <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat&display=swap" rel="stylesheet">
     </head>
     <body>
+                <%            
+            String serie = request.getParameter("serie");
+            String marca = request.getParameter("marca_auto");
+            String modelo = request.getParameter("modelo_auto");
+            String color = request.getParameter("color_auto");
+            String subtotal = request.getParameter("suntotal_auto");
+            String total = request.getParameter("total_auto");
+
+            if (serie != null) {
+                String qry = "INSERT INTO automovil(no_serie,marca,modelo,color,subtotal,total) values ('" + serie + "','" + marca + "','" + modelo + "','" + color + "','" + subtotal + "','" + total + "')";
+                sql.executeUpdate(qry);
+
+            }
+
+
+        %>
         <header class="header" style="height: 70px">
             <div class="bg-dark">
                 <div>
