@@ -1,6 +1,6 @@
 create database CarSale;
 
-\c CarSale;
+\c carsale;
 
 create extension pgcrypto;
 

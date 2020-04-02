@@ -110,5 +110,63 @@
             </div>
 
         </div>
+             <script language="JavaScript">
+
+		function validar()
+		{
+                  var No_Serie, marca, modelo, color, subtotal, total;
+              
+            
+                   
+                     No_Serie = document.getElementById("seriea").value;
+                     marca = document.getElementById("amarca").value;
+                     modelo = document.getElementById("amodelo").value;
+                     color = document.getElementById("acolor").value;
+                     subtotal = document.getElementById("asubt").value;
+                     total = document.getElementById("atotal").value;
+                   
+                    
+                    
+                    
+                   
+               if( No_Serie.length>17|| No_Serie.length<17){
+		alert("El No. Serie deebe tener exactamente 17 caracteres");
+		return false;
+                }  
+                 else if( marca===""){
+		alert("No a colocado la marca");
+		return false;
+                }
+                 else if( modelo===""){
+                        alert("El modelo esta vacio");
+                        return false;
+                }
+                else if( color===""){
+                        alert("El color esta vacio");
+                        return false;
+                        
+                }else if( subtotal===""){
+                        alert("El subtotal esta vacio");
+                        return false;
+                        
+                }else if( total===""){
+                        alert("El total esta vacio");
+                        return false;
+                }
+                else if (isNaN(subtotal)) {
+                        alert("El subtotal no es un numero");
+                        return false;
+                }
+                 else if (isNaN(total)) {
+                        alert("El total no es un numero");
+                        return false;
+                }
+                
+        
+                
+                    
+                }
+                
+         </script>
     </body>
 </html>

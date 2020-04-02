@@ -56,34 +56,34 @@
                                         <div class="row">
                                             <div class="col">
                                                 <label for="no_serie">No. de serie</label>
-                                                <input name="serie" type="text" class="form-control" id="nombre" placeholder="" value=""><br>
+                                                <input name="serie" type="text" class="form-control" id="seriea" placeholder="" value=""><br>
                                             </div>
                                             <div class="col">
                                                 <label for="marca">Marca</label>
-                                                <input name="marca_auto" type="text" class="form-control" id="apellidopat" placeholder="Ej:Chevrolet" value="">
+                                                <input name="marca_auto" type="text" class="form-control" id="amarca" placeholder="Ej:Chevrolet" value="">
                                             </div>
                                             <div class="col">
                                                 <label for="modelo">Modelo</label>
-                                                <input name="modelo_auto" type="text" class="form-control" id="apellidomat" placeholder="Ej:Spark-2018" value="">
+                                                <input name="modelo_auto" type="text" class="form-control" id="amodelo" placeholder="Ej:Spark-2018" value="">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-4">
                                                 <label for="color">Color</label>
-                                                <input name="color_auto" type="text" class="form-control" id="telefono" placeholder="Ej:Rojo" value=""><br>
+                                                <input name="color_auto" type="text" class="form-control" id="acolor" placeholder="Ej:Rojo" value=""><br>
                                             </div>
                                         </div>
                                         <h4>Precio del vehículo</h4>
                                         <div class="row">
                                             <div class="col-4">
                                                 <label for="subtotal">Subtotal</label>
-                                                <input name="subtotal_auto" type="text" class="form-control" id="email" placeholder="$$$" value=""><br>
+                                                <input name="subtotal_auto" type="text" class="form-control" id="asubt" placeholder="$$$" value=""><br>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-4">
                                                 <label for="total">Total</label>
-                                                <input name="total_auto" type="pass" class="form-control" id="password" placeholder="$$$" value=""><br>
+                                                <input name="total_auto" type="pass" class="form-control" id="atotal" placeholder="$$$" value=""><br>
                                             </div>
                                         </div>
                                     </div>
@@ -97,5 +97,63 @@
             </div>
 
         </div>
+        <script language="JavaScript">
+
+		function validar()
+		{
+                  var No_Serie, marca, modelo, color, subtotal, total;
+              
+            
+                   
+                     No_Serie = document.getElementById("seriea").value;
+                     marca = document.getElementById("amarca").value;
+                     modelo = document.getElementById("amodelo").value;
+                     color = document.getElementById("acolor").value;
+                     subtotal = document.getElementById("asubt").value;
+                     total = document.getElementById("atotal").value;
+                   
+                    
+                    
+                    
+                   
+               if( No_Serie.length>17|| No_Serie.length<17){
+		alert("El No. Serie deebe tener exactamente 17 caracteres");
+		return false;
+                }  
+                 else if( marca===""){
+		alert("No a colocado la marca");
+		return false;
+                }
+                 else if( modelo===""){
+                        alert("El modelo esta vacio");
+                        return false;
+                }
+                else if( color===""){
+                        alert("El color esta vacio");
+                        return false;
+                        
+                }else if( subtotal===""){
+                        alert("El subtotal esta vacio");
+                        return false;
+                        
+                }else if( total===""){
+                        alert("El total esta vacio");
+                        return false;
+                }
+                else if (isNaN(subtotal)) {
+                        alert("El subtotal no es un numero");
+                        return false;
+                }
+                 else if (isNaN(total)) {
+                        alert("El total no es un numero");
+                        return false;
+                }
+                
+        
+                
+                    
+                }
+                
+         </script>
     </body>
 </html>
