@@ -15,7 +15,7 @@ try{
     Class.forName("org.postgresql.Driver");
     conex=(Connection)DriverManager.getConnection("jdbc:postgresql://localhost:5432/carsale1","postgres","edwin");//aqui va la contraseña de su postgres instalado en su maquina 
     sql=conex.createStatement();
-    out.print("Conexion a la base de datos exitosa :3");
+    //out.print("Conexion a la base de datos exitosa :3");
 }catch(Exception e){
     out.print("Conexion a la base de datos fallo" + e);
     
