@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="iniciar_sesion.jsp" %>
+<%@include file="conexion.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>

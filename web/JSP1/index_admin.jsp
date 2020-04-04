@@ -41,7 +41,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card shadow-lg p-3 mb-5 bg-white">
-                        <div class="card-header"><h3 style="text-align: center">Bienvenido Gerardo Vite</h3></div>
+                        <%
+                            HttpSession sesion = request.getSession();
+                            String email=(String)sesion.getAttribute("email");
+                            String id_usuario=(String)sesion.getAttribute("id_usuario");
+            
+                            String datos="select * from usuario where id_usuario='"+id_usuario+"'";
+                            ResultSet datos1 = sql.executeQuery(datos);
+                            datos1.next();  
+                        %>
+                        <div class="card-header"><h3 style="text-align: center">Bienvenido <% out.print(datos1.getString("nombre")+" "+datos1.getString("apellido_paterno")); %></h3></div>
                         <div class="card-body">
                             <form id="form1" action="#" method="post" class="needs-validation">
                                 <h4>Empleados</h4>
