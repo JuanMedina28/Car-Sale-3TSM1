@@ -1,4 +1,4 @@
-<%@include file="sesion.jsp" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card shadow-lg p-3 mb-5 bg-white">
-                        <div class="card-header"><h3 style="text-align: center">Bienvenido oioii</h3></div>
+                        <div class="card-header"><h3 style="text-align: center">Bienvenido</h3></div>
                         <div class="card-body">
                             <form id="form1" action="#" method="post" class="needs-validation">
                                 <h4>Mi cuenta</h4>

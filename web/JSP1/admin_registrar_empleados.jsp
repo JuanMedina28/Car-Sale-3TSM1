@@ -160,6 +160,7 @@
                                                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Puesto</label>
                                                 <select class="custom-select my-1 mr-sm-2" id="tipo" name="puesto">
                                                     <option selected value="">Elige una opción</option>
+                                                    <option value="Administrador">Administrador</option>
                                                     <option value="Jefe">Jefe</option>
                                                     <option value="Empleado">Empleado</option>
                                                 </select>
