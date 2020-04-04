@@ -19,7 +19,7 @@
         <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat&display=swap" rel="stylesheet">
     </head>
     <body>
-   
+
         <%            
             String nombre = request.getParameter("nombre");
             String ap_pat = request.getParameter("apellidopat");
@@ -28,11 +28,31 @@
             String password = request.getParameter("pass");
             String telefono = request.getParameter("telefono");
             String tipo_usu = request.getParameter("puesto");
+            String estado = request.getParameter("estado");
+            String municipio = request.getParameter("municipio");
+            String cp = request.getParameter("cp");
+            String colonia = request.getParameter("colonia");
+            String calle = request.getParameter("calle");
+            String area = request.getParameter("area");
+            String sueldo = request.getParameter("sueldo");
             
 
             if (nombre != null) {
                 String qry = "INSERT INTO usuario(nombre, apellido_paterno,apellido_materno,correo_electronico,clave,no_telefono,tipo_usuario) values ('" + nombre + "','" + ap_pat + "','" + ap_mat + "','" + email + "','" + password + "','" + telefono + "','" + tipo_usu + "')";
                 sql.executeUpdate(qry);
+                
+                String qry1="select * from usuario where correo_electronico='"+email+"'"+" AND clave='"+password+"'";
+                ResultSet data = sql.executeQuery(qry1);
+                
+                if(data.next()){
+                    String id_empleado=data.getString("id_usuario");
+                
+                    String qry2 = "INSERT INTO empleado values ('"+id_empleado+"','"+calle+"','"+colonia+"','"+municipio+"','"+estado+"','"+cp+"','"+area+"','"+tipo_usu+"','"+sueldo+"')";
+                    sql.executeUpdate(qry2);
+                    out.print("<script>alert('Registro exitoso')</script>");
+                }else{
+                    out.print("<script>alert('Error al registrar')</script>");
+                }
 
             }
 
@@ -87,15 +107,15 @@
                                                 <label for="nombre">Correo electrónico</label>
                                                 <input name="correo" type="email" class="form-control" id="email" placeholder="correo@dominio.com" value=""><br>
                                             </div>
-                                            
+
                                             <div class="col-4">
                                                 <label for="nombre">Telefono</label>
                                                 <input name="telefono" type="text" class="form-control" id="telefono" placeholder="Ej:55-3463-4867" value=""><br>
                                             </div>
                                         </div>
-                                        
-                                        
-                                         
+
+
+
                                         <div class="row">
                                             <div class="col-4">
                                                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Ingresar Contraseña</label>
@@ -106,8 +126,8 @@
                                                 <input name="pass2" type="password" class="form-control" id="confirm_password" placeholder="********" value="">
                                             </div>
                                         </div><br>
-                                        
-                                        
+
+
                                         <h4>Dirección</h4>
                                         <div class="row">
                                             <div class="col-4">
@@ -154,17 +174,17 @@
                                                 </select>
                                             </div>
                                         </div><br>
-                                        
+
                                         <div class="col-4">
                                             <label for="correo">Sueldo</label>
                                             <input name="sueldo" type="text" class="form-control" id="sueldo" placeholder="Ej:5900" value=""><br>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                                 <button class="btn btn-danger" type="submit" >Registar empleado</button>
                             </form>
-                             
+
                             <a href="index_admin.jsp"><button type="button" class="btn btn-dark"  style="width: 20%; margin-left: 30%; margin-top: -6.5%">Regresar</button></a>
                         </div>
                     </div>
@@ -172,105 +192,98 @@
             </div>
 
         </div>
-         <script language="JavaScript">
+        <script language="JavaScript">
 
-		function validar()
-		{
-                  var nombre, apellidopat, apellidomat, colonia,calle,tipo, dep, email,sueldo,telefono,password,confirm_password,estado,municipio,cp;
-              
-               expresion = /\w+@\w+\.+[a-z]/;
-                   
-                   nombre = document.getElementById("nombre").value;
-                   apellidopat = document.getElementById("apellidopat").value;
-                    apellidomat = document.getElementById("apellidomat").value;
-                    colonia = document.getElementById("colonia").value;
-                    calle = document.getElementById("calle").value;
-                    tipo = document.getElementById("tipo").value;
-                    dep = document.getElementById("dep").value;
-                    email = document.getElementById("email").value;
-                    sueldo = document.getElementById("sueldo").value;
-                    telefono = document.getElementById("telefono").value;
-                    password = document.getElementById("password").value;
-                    confirm_password = document.getElementById("confirm_password").value;
-                    estado = document.getElementById("estado").value;
-                    municipio = document.getElementById("municipio").value;
-                    cp = document.getElementById("cp").value;
-                    
-                    
-                    
-                   
-               if( nombre===""||nombre.length>35){
-		alert("El nombre esta vacio o esta superando los 35 caracteres");
-		return false;
-                }
-                 else if( apellidopat===""||apellidopat.length>20){
-		alert("El apellido paterno esta vacio o supera los 20 caracteres");
-		return false;
-                }
-                 else if( password===""||password.length>16){
-                        alert("La contraseña esta vacia o supera los 16 caracteres");
-                        return false;
-                }
-                else if( confirm_password!==password){
-                        alert("Las contraseñas no coinciden");
-                        return false;
-                }
-                else if( apellidomat===""||apellidomat.length>20){
-                        alert("El apellido materno esta vacio o supera los 20 caracteres");
-                        return false;
-                }
-                else if( colonia===""||colonia.length>20){
-                        alert("La colonia esta vacia o supera los 10 caracteres");
-                        return false;
-                }else if( calle===""||calle.length>30){
-                        alert("La calle esta vacia o supera los 30 caracteres");
-                        return false;
-                }else if( tipo===""){
-                        alert("No se selecciono un Puesto");
-                        return false;
-                }else if( dep===""){
-                        alert("No seleciono un área");
-                        return false;
-                }else if( sueldo===""){
-                        alert("Sueldo vacio");
-                        return false;
-                }else if (isNaN(sueldo)) {
-                        alert("El sueldo no es un numero");
-                        return false;
-                }else if( estado===""){
-                        alert("El estado esta vacio");
-                        return false;
-                }else if( municipio===""){
-                        alert("El municipio esta vacio");
-                        return false;
-                }else if( cp===""){
-                        alert("Codigo postal esta vacio");
-                        return false;
-                }else if (isNaN(cp)) {
-                        alert("El codigo postal no es un numero");
-                        return false;
-                }
-                
-                else if(!expresion.test(email)){
-                        alert("Correo invalido");
-                        return false;
-                }else if( email===""||email.length>30){
-                        alert("El email esta vacio o supera los 30 caracteres");
-                        return false;
-                } else if( telefono===""||telefono.length>10){
-                        alert("El telefono esta vacio o supera los 10 caracteres");
-                        return false;
+            function validar()
+            {
+                var nombre, apellidopat, apellidomat, colonia, calle, tipo, dep, email, sueldo, telefono, password, confirm_password, estado, municipio, cp;
+
+                expresion = /\w+@\w+\.+[a-z]/;
+
+                nombre = document.getElementById("nombre").value;
+                apellidopat = document.getElementById("apellidopat").value;
+                apellidomat = document.getElementById("apellidomat").value;
+                colonia = document.getElementById("colonia").value;
+                calle = document.getElementById("calle").value;
+                tipo = document.getElementById("tipo").value;
+                dep = document.getElementById("dep").value;
+                email = document.getElementById("email").value;
+                sueldo = document.getElementById("sueldo").value;
+                telefono = document.getElementById("telefono").value;
+                password = document.getElementById("password").value;
+                confirm_password = document.getElementById("confirm_password").value;
+                estado = document.getElementById("estado").value;
+                municipio = document.getElementById("municipio").value;
+                cp = document.getElementById("cp").value;
+
+
+
+
+                if (nombre === "" || nombre.length > 35) {
+                    alert("El nombre esta vacio o esta superando los 35 caracteres");
+                    return false;
+                } else if (apellidopat === "" || apellidopat.length > 20) {
+                    alert("El apellido paterno esta vacio o supera los 20 caracteres");
+                    return false;
+                } else if (password === "" || password.length > 16) {
+                    alert("La contraseña esta vacia o supera los 16 caracteres");
+                    return false;
+                } else if (confirm_password !== password) {
+                    alert("Las contraseñas no coinciden");
+                    return false;
+                } else if (apellidomat === "" || apellidomat.length > 20) {
+                    alert("El apellido materno esta vacio o supera los 20 caracteres");
+                    return false;
+                } else if (colonia === "" || colonia.length > 20) {
+                    alert("La colonia esta vacia o supera los 10 caracteres");
+                    return false;
+                } else if (calle === "" || calle.length > 30) {
+                    alert("La calle esta vacia o supera los 30 caracteres");
+                    return false;
+                } else if (tipo === "") {
+                    alert("No se selecciono un Puesto");
+                    return false;
+                } else if (dep === "") {
+                    alert("No seleciono un área");
+                    return false;
+                } else if (sueldo === "") {
+                    alert("Sueldo vacio");
+                    return false;
+                } else if (isNaN(sueldo)) {
+                    alert("El sueldo no es un numero");
+                    return false;
+                } else if (estado === "") {
+                    alert("El estado esta vacio");
+                    return false;
+                } else if (municipio === "") {
+                    alert("El municipio esta vacio");
+                    return false;
+                } else if (cp === "") {
+                    alert("Codigo postal esta vacio");
+                    return false;
+                } else if (isNaN(cp)) {
+                    alert("El codigo postal no es un numero");
+                    return false;
+                } else if (!expresion.test(email)) {
+                    alert("Correo invalido");
+                    return false;
+                } else if (email === "" || email.length > 30) {
+                    alert("El email esta vacio o supera los 30 caracteres");
+                    return false;
+                } else if (telefono === "" || telefono.length > 10) {
+                    alert("El telefono esta vacio o supera los 10 caracteres");
+                    return false;
                 } else if (isNaN(telefono)) {
-                        alert("El telefono no es un numero");
-                        return false;
-                }    
-                
-                    
+                    alert("El telefono no es un numero");
+                    return false;
                 }
-                
-         </script>
-        
-            
+
+
+            }
+
+        </script>
+
+
         <footer class="footer py-2 txt-xs-center">
             <div class="container">
                 <p>2020? CARSALE.COM Todos los derechos reservados</p>
@@ -288,6 +301,6 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
+
     </body>
 </html>

@@ -1,4 +1,4 @@
-
+<%@include file="sesion.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card shadow-lg p-3 mb-5 bg-white">
-                        <div class="card-header"><h3 style="text-align: center">Bienvenido "aqui va nombre del jefe"</h3></div>
+                        <div class="card-header"><h3 style="text-align: center">Bienvenido jjj</h3></div>
                         <div class="card-body">
                             <form id="form1" action="#" method="post" class="needs-validation">
                                 <h4>Empleados</h4>
@@ -58,7 +58,7 @@
                                     <a href=""><button type="button" class="btn btn-danger"  style="width: 25%">Consultar</button></a>
                                 </div><br><br>
                             </form>
-                            <a href="../index.html"><button type="button" class="btn btn-dark"  style="width: 25%">Cerrar Sesion</button></a>
+                            <a href="../JSP1/cerrar_sesion.jsp"><button type="button" class="btn btn-dark"  style="width: 25%">Cerrar Sesion</button></a>
                         </div>
                     </div>
                 </div>

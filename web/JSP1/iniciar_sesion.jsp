@@ -23,11 +23,10 @@
                 String qry="select * from usuario where correo_electronico='"+varuser+"'"+" AND clave='"+varpass+"'";
                 ResultSet data = sql.executeQuery(qry);
                 if(data.next()){
-                    String nevel = data.getString(2);
                     HttpSession sesion_act = request.getSession();
-                    sesion_act.setAttribute("user",varuser);
-                    sesion_act.setAttribute("nombre",data.getString(1));
-                    response.sendRedirect("index_cliente.jsp");
+                    sesion_act.setAttribute("email",varuser);
+                    sesion_act.setAttribute("id_usuario",data.getString("id_usuario"));
+                    response.sendRedirect("sesion.jsp");
                 }
             }
 

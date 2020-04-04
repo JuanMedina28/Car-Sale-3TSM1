@@ -1,8 +1,8 @@
-
+<%@include file="sesion.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Index Administrador</title>
+        <title>Index Cliente</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Font Awesome -->
@@ -28,8 +28,8 @@
                             <div class=" navg navbar-nav w-100 justify-content-center " >
                                 <a class="nav-item nav-link active" href="../index.html">Inicio</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
-                                <a class="nav-item nav-link" href="#">Catalogo</a>
-                                <a class="nav-item nav-link" href="index_cliente.jsp">Mi cuenta</a>
+                                <a class="nav-item nav-link" href="../JSP1/catalogo_auto_cli.jsp">Catalogo</a>
+                                <a class="nav-item nav-link" href="../JSP1/index_cliente.jsp">Mi cuenta</a>
                                 <a class="nav-item nav-link" href="#">Contacto</a>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card shadow-lg p-3 mb-5 bg-white">
-                        <div class="card-header"><h3 style="text-align: center">Bienvenido "aqui va nombre del cliente"</h3></div>
+                        <div class="card-header"><h3 style="text-align: center">Bienvenido oioii</h3></div>
                         <div class="card-body">
                             <form id="form1" action="#" method="post" class="needs-validation">
                                 <h4>Mi cuenta</h4>
@@ -51,7 +51,7 @@
                                     <a href="cliente_modificar_cuenta.jsp"><button type="button" class="btn btn-info"  style="width: 25%">Modificar</button></a>
                                 </div><br>
                             </form>
-                            <a href="../index.html"><button type="button" class="btn btn-dark"  style="width: 25%">Cerrar Sesion</button></a>
+                            <a href="../JSP1/cerrar_sesion.jsp"><button type="button" class="btn btn-dark"  style="width: 25%">Cerrar Sesion</button></a>
                         </div>
                     </div>
                 </div>
