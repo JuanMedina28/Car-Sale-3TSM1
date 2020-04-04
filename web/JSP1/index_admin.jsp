@@ -56,7 +56,7 @@
                                     <a href="admin_consultar_clientes.jsp"><button type="button" class="btn btn-info"  style="width: 25%">Consultar</button></a>
                                 </div><br><br>
                             </form>
-                            <a href="../index.html"><button type="button" class="btn btn-dark"  style="width: 25%">Cerrar Sesion</button></a>
+                            <a href="../JSP1/cerrar_sesion.jsp"><button type="button" class="btn btn-dark"  style="width: 25%">Cerrar Sesion</button></a>
                         </div>
                     </div>
                 </div>

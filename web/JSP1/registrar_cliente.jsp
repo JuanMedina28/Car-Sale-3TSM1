@@ -33,7 +33,19 @@
             if (nombre != null) {
                 String qry = "INSERT INTO usuario(nombre, apellido_paterno,apellido_materno,correo_electronico,clave,no_telefono) values ('" + nombre + "','" + ap_pat + "','" + ap_mat + "','" + email + "','" + password + "','" + telefono + "')";
                 sql.executeUpdate(qry);
-
+                
+                String qry1="select * from usuario where correo_electronico='"+email+"'"+" AND clave='"+password+"'";
+                ResultSet data = sql.executeQuery(qry1);
+                if(data.next()){
+                    String id_cliente=data.getString("id_usuario");
+                
+                String qry2 = "INSERT INTO cliente(id_usuario) values ('"+id_cliente+"')";
+                sql.executeUpdate(qry2);
+                out.print("<script>alert('Registro exitoso')</script>");
+                response.sendRedirect("iniciar_sesion.jsp");
+                }else{
+                    out.print("<script>alert('Error al registrar')</script>");
+                }
             }
 
 
@@ -110,7 +122,7 @@
 
                                 <button class="btn btn-danger" type="sutmit">Registarse Ahora</button>
                             </form>
-                            <a href="index.html"><button type="button" class="btn btn-dark"  style="width: 20%; margin-left: 30%; margin-top: -8%">Regresar</button></a>
+                            <a href="../index.html"><button type="button" class="btn btn-dark"  style="width: 20%; margin-left: 30%; margin-top: -8%">Regresar</button></a>
                             <br>
                         </div>
                     </div>
