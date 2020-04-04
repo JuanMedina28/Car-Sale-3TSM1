@@ -1,4 +1,4 @@
-<%@include file="sesion.jsp" %>
+
 <!DOCTYPE html>
 <html>
     <head>
