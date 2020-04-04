@@ -1,7 +1,7 @@
 <%-- 
     Document   : sesion.jsp
     Created on : 3/04/2020, 04:05:01 PM
-    Author     : boowe
+    Author     : Juan J. Medina
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
