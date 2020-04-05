@@ -1,5 +1,5 @@
-
-<!DOCTYPE html>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="conexion.jsp" %>   
 <html>
     <head>
         <title>Modificar Cuenta</title>
@@ -45,44 +45,73 @@
                         <div class="card-header"><h3>Modificar cuenta</h3></div>
                         <div class="card-body">
                             <form id="form1" action="#" method="post" class="needs-validation">
+                                <% 
+                                    HttpSession sesion = request.getSession();
+                                    String email=(String)sesion.getAttribute("email");
+                                    String id_usuario=(String)sesion.getAttribute("id_usuario");
+                            
+                                    String datos="select * from usuario inner join cliente on usuario.id_usuario=cliente.id_usuario inner join tarjeta on cliente.no_tarjeta=tarjeta.no_tarjeta where usuario.id_usuario='"+id_usuario+"'";
+                                    ResultSet datos1 = sql.executeQuery(datos);
+                                    datos1.next();
+                                    
+                                    
+                                    String nombre = request.getParameter("nombre1");
+                                    String ap_pat = request.getParameter("apellidopat1");
+                                    String ap_mat = request.getParameter("apellidomat1");
+                                    String email = request.getParameter("email1");
+                                    String password = request.getParameter("confirm_password1");
+                                    String telefono = request.getParameter("telefono1");
+                                    String tp_tarjeta = request.getParameter("tp_tarjeta1");
+                                    String no_tarjeta = request.getParameter("no_tarjeta1");
+                                    String cvv = request.getParameter("cvv1");
+                                    String fech_vence = request.getParameter("fech_vence1");
+                                    
+                                    String datos="select * from usuario inner join cliente on usuario.id_usuario=cliente.id_usuario inner join tarjeta on cliente.no_tarjeta=tarjeta.no_tarjeta where correo_electronico='"+datos1.getString("correo_electronico")+"' and tarjeta.no_tarjeta=";
+                                    ResultSet datos1 = sql.executeQuery(datos);
+                                    datos1.next();
+                                    
+                                    String actualizar_saldo="update tarjeta set saldo_tarjeta="+saldo_nuevo+" where id_tarjeta='"+id_tarjetaa+"'";
+                                    sql.executeUpdate(actualizar_saldo);
+                                
+                                %>
                                 <div class="form-row">
                                     <div class="col-md4 mb-3">
                                         <h4>Datos personales</h4>
                                         <div class="row">
                                             <div class="col">
                                                 <label for="nombre">Nombre(s)</label>
-                                                <input name="nombre" type="text" class="form-control" id="nombre" placeholder="Ej.Cristian" value=""><br>
+                                                <input name="nombre1" type="text" class="form-control" id="nombre" placeholder="Ej.Cristian" value="<% out.print(datos1.getString("nombre")); %>"><br>
                                             </div>
                                             <div class="col">
                                                 <label for="apellidopat">Apellido Paterno</label>
-                                                <input name="apellidopat" type="text" class="form-control" id="apellidopat" placeholder="Ej:Rodriguez" value="">
+                                                <input name="apellidopat1" type="text" class="form-control" id="apellidopat" placeholder="Ej:Rodriguez" value="<% out.print(datos1.getString("apellido_paterno")); %>">
                                             </div>
                                             <div class="col">
                                                 <label for="apellidomat">Apellido Materno</label>
-                                                <input name="apellidomat" type="text" class="form-control" id="apellidomat" placeholder="Ej:Vazquez" value="">
+                                                <input name="apellidomat1" type="text" class="form-control" id="apellidomat" placeholder="Ej:Vazquez" value="<% out.print(datos1.getString("apellido_paterno")); %>">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-4">
                                                 <label for="nombre">Telefono</label>
-                                                <input name="telefono" type="text" class="form-control" id="nombre" placeholder="Ej:55-3463-4867" value=""><br>
+                                                <input name="telefono1" type="text" class="form-control" id="telefono" placeholder="Ej:55-3463-4867" value="<% out.print(datos1.getString("no_telefono")); %>"><br>
                                             </div>
                                         </div>
                                         <h4>Datos de la cuenta</h4>
                                         <div class="row">
                                             <div class="col-8">
                                                 <label for="nombre">Correo</label>
-                                                <input name="email" type="text" class="form-control" id="nombre" placeholder="correo@dominio.com" value=""><br>
+                                                <input name="email1" type="text" class="form-control" id="email" placeholder="correo@dominio.com" value="<% out.print(datos1.getString("correo_electronico")); %>"><br>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-4">
-                                                <label for="correo">Contraseña</label>
-                                                <input name="password" type="pass" class="form-control" id="email" placeholder="************" value=""><br>
+                                                <label for="correo">ContraseÃ±a</label>
+                                                <input name="password1" type="pass" class="form-control" id="password" placeholder="************" value=""><br>
                                             </div>
                                             <div class="col-4">
-                                                <label for="correo">Confirmar contraseña</label>
-                                                <input name="confirm_password" type="password" class="form-control" id="email" placeholder="************" value=""><br>
+                                                <label for="correo">Confirmar contraseÃ±a</label>
+                                                <input name="confirm_password1" type="password" class="form-control" id="confirm_password" placeholder="************" value=""><br>
                                             </div>
                                         </div>
 
@@ -90,28 +119,38 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tipo de tarjeta</label>
-                                                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="tp_tarjeta">
-                                                    <option selected>Elige una opción</option>
-                                                    <option value="Credito">Credito</option>
+                                                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="tp_tarjeta1" id="tp_tarjeta">
+                                                    <% 
+                                                        if(datos1.getString("tipo_tarjeta").equals("Credito")){
+                                                    %>
+                                                    <option selected value="<% out.print(datos1.getString("tipo_tarjeta")); %>"><% out.print(datos1.getString("tipo_tarjeta")); %></option>
                                                     <option value="Debito">Debito</option>
+                                                    <%
+                                                        }else{
+                                                    %>
+                                                    <option selected value="<% out.print(datos1.getString("tipo_tarjeta")); %>"><% out.print(datos1.getString("tipo_tarjeta")); %></option>
+                                                    <option value="Credito">Credito</option>
+                                                    <%
+                                                        }
+                                                    %>
                                                 </select>
                                             </div>
                                         </div><br>
                                         <div class="row">
                                             <div class="col-8">
                                                 <label for="correo">No. Tarjeta</label>
-                                                <input name="no_tarjeta" type="text" class="form-control" id="email" placeholder="Ej:5909809765452123" value=""><br>
+                                                <input name="no_tarjeta1" type="text" class="form-control" id="no_tarjeta" placeholder="Ej:5909809765452123" value="<% out.print(datos1.getString("no_tarjeta")); %>"><br>
                                             </div>
                                             <div class="col-4">
                                                 <label for="correo">CVV</label>
-                                                <input name="cvv" type="text" class="form-control" id="email" placeholder="Ej:590" value=""><br>
+                                                <input name="cvv1" type="text" class="form-control" id="cvv" placeholder="Ej:590" value="<% out.print(datos1.getString("cvv")); %>"><br>
                                             </div>
                                         </div>
                                         <div class="row">
-                                        <div class="col-4">
-                                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref" for="correo">Fech. Vencimiento</label>
-                                            <input name="fecha_venci" type="date" class="form-control" id="email" placeholder="Ej:19-12-28" value=""><br>
-                                        </div>
+                                            <div class="col-4">
+                                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref" for="correo">Fech. Vencimiento</label>
+                                                <input name="fecha_venci1" type="month" class="form-control" id="fecha_venci" min="2020-07" max="2035-12" value="<% out.print(datos1.getString("fecha_vence")); %>"><br>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -124,8 +163,8 @@
             </div>
 
         </div>
-        
-           
+
+
         <footer class="footer py-2 txt-xs-center">
             <div class="container">
                 <p>2020? CARSALE.COM Todos los derechos reservados</p>
@@ -143,6 +182,6 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
+
     </body>
 </html>

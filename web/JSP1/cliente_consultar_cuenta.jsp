@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="conexion.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,20 +51,20 @@
                 <table class="table table-hover table-dark" style="position: absolute; width: 85%; margin-left: 7.5%;">
                     <thead>
                         <tr>
-                            <th scope="col" style="text-align: center; font-size: 20px;"></th>
-                            <th colspan="4" style="text-align: center; font-size: 20px;">Datos Personales</th>
-                            <th colspan="2" style="text-align: center; font-size: 20px;">Datos de la cuenta</th>
+                            <th colspan="5" style="text-align: center; font-size: 20px;">Datos Personales</th>
+                            <th colspan="3" style="text-align: center; font-size: 20px;">Datos de la cuenta</th>
                             <th colspan="4" style="text-align: center; font-size: 20px;">Datos Bancarios</th>
                             <th colspan="2" style="text-align: center; font-size: 20px;">Modificar</th>
                         </tr>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">ID</th>
                             <th scope="col">Nombre (s)</th>
                             <th scope="col">Aepllido Paterno</th>
                             <th scope="col">Apellido Materno</th>
                             <th scope="col">No. Teléfono</th>
                             <th scope="col">Correo Electrónico</th>
                             <th scope="col">Contraseña Actual</th>
+                            <th scope="col">Tipo Usuario</th>
                             <th scope="col">Tipo Tarjeta</th>
                             <th scope="col">No. Tarjeta</th>
                             <th scope="col">CVV</th>
@@ -73,21 +74,35 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <%
+                            HttpSession sesion = request.getSession();
+                            String email=(String)sesion.getAttribute("email");
+                            String id_usuario=(String)sesion.getAttribute("id_usuario");
+                            
+                            String datos="select * from usuario inner join cliente on usuario.id_usuario=cliente.id_usuario inner join tarjeta on cliente.no_tarjeta=tarjeta.no_tarjeta where usuario.id_usuario='"+id_usuario+"'";
+                            ResultSet datos1 = sql.executeQuery(datos);
+                            
+                            while(datos1.next()){
+                        %>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Edgar Gabriel</td>
-                            <td>Hernandez</td>
-                            <td>Sanchez</td>
-                            <td>5572779113</td>
-                            <td>edgarfto@gmail.com</td>
-                            <td>Integr@dora31</td>
-                            <td>Debito</td>
-                            <td>1729880198873927</td>
-                            <td>123</td>
-                            <td>12-09-240</td>
+                            <th scope="row"><% out.print(datos1.getString("id_usuario")); %></th>
+                            <td><% out.print(datos1.getString("nombre")); %></td>
+                            <td><% out.print(datos1.getString("apellido_paterno")); %></td>
+                            <td><% out.print(datos1.getString("apellido_materno")); %></td>
+                            <td><% out.print(datos1.getString("no_telefono")); %></td>
+                            <td><% out.print(datos1.getString("correo_electronico")); %></td>
+                            <td><% out.print(datos1.getString("clave")); %></td>
+                            <td><% out.print(datos1.getString("tipo_usuario")); %></td>
+                            <td><% out.print(datos1.getString("tipo_tarjeta")); %></td>
+                            <td><% out.print(datos1.getString("no_tarjeta")); %></td>
+                            <td><% out.print(datos1.getString("cvv")); %></td>
+                            <td><% out.print(datos1.getString("fecha_vence")); %></td>
                             <td><a href="cliente_modificar_cuenta.jsp"><img src="../Icons/ic_create_white_36dp.png"></a></td>
                             <td><a href="#"><img src="../Icons/ic_delete_sweep_white_36dp.png"></a></td>
                         </tr>
+                        <%
+                            }  
+                        %>
                     </tbody>
                 </table>
             </div>

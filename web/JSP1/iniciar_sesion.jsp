@@ -16,8 +16,8 @@
     <script  src = " https://use.fontawesome.com/releases/v5.0.7/js/all.js " > </script>
     </head>
     <body>
-                <%            
-              String varuser = request.getParameter("txtemail");
+        <%            
+            String varuser = request.getParameter("txtemail");
             String varpass = request.getParameter("txtpass");
             if(varuser!=null && varpass!=null){
                 String qry="select * from usuario where correo_electronico='"+varuser+"'"+" AND clave='"+varpass+"'";
@@ -58,7 +58,6 @@
                     </div>
                 </div>
             </div>
-                
         </div>
     </body>
 </html>

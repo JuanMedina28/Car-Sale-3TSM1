@@ -37,26 +37,32 @@
             String sueldo = request.getParameter("sueldo");
             
 
-            if (nombre != null) {
-                String qry = "INSERT INTO usuario(nombre, apellido_paterno,apellido_materno,correo_electronico,clave,no_telefono,tipo_usuario) values ('" + nombre + "','" + ap_pat + "','" + ap_mat + "','" + email + "','" + password + "','" + telefono + "','" + tipo_usu + "')";
-                sql.executeUpdate(qry);
+            if (email != null && password!=null){
+                String validar_email="select * from usuario where correo_electronico='"+email+"'";
+                ResultSet validar1 = sql.executeQuery(validar_email);
                 
-                String qry1="select * from usuario where correo_electronico='"+email+"'"+" AND clave='"+password+"'";
-                ResultSet data = sql.executeQuery(qry1);
+                if(validar1.next()){
+                out.print("<script>alert('ERROR: El correo electronico ya está en uso')</script>");
                 
-                if(data.next()){
-                    String id_empleado=data.getString("id_usuario");
-                
-                    String qry2 = "INSERT INTO empleado values ('"+id_empleado+"','"+calle+"','"+colonia+"','"+municipio+"','"+estado+"','"+cp+"','"+area+"','"+tipo_usu+"','"+sueldo+"')";
-                    sql.executeUpdate(qry2);
-                    out.print("<script>alert('Registro exitoso')</script>");
                 }else{
+                    String qry = "INSERT INTO usuario(nombre, apellido_paterno,apellido_materno,correo_electronico,clave,no_telefono,tipo_usuario) values ('" + nombre + "','" + ap_pat + "','" + ap_mat + "','" + email + "','" + password + "','" + telefono + "','" + tipo_usu + "')";
+                    sql.executeUpdate(qry);
+                
+                    String qry1="select * from usuario where correo_electronico='"+email+"'"+" AND clave='"+password+"'";
+                    ResultSet data = sql.executeQuery(qry1);
+                
+                    if(data.next()){
+                        String id_empleado=data.getString("id_usuario");
+                
+                        String qry2 = "INSERT INTO empleado values ('"+id_empleado+"','"+calle+"','"+colonia+"','"+municipio+"','"+estado+"','"+cp+"','"+area+"','"+tipo_usu+"','"+sueldo+"')";
+                        sql.executeUpdate(qry2);
+                        out.print("<script>alert('Registro exitoso')</script>");
+                        response.sendRedirect("index_admin.jsp");
+                    }else{
                     out.print("<script>alert('Error al registrar')</script>");
+                    }
                 }
-
-            }
-
-
+            }   
         %>
         <header class="header" style="height: 70px">
             <div class="bg-dark">
@@ -168,7 +174,7 @@
                                             <div class="col-4">
                                                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Área</label>
                                                 <select class="custom-select my-1 mr-sm-2" id="dep" name="area">
-                                                    <option selected value="">>Elige una opción</option>
+                                                    <option selected value="">Elige una opción</option>
                                                     <option value="ventas">Ventas</option>
                                                     <option value="almacen">Almacen</option>
                                                     <option value="mecanico">Mecanico</option>

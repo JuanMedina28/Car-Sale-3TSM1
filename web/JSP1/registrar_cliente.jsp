@@ -29,26 +29,64 @@
             String email = request.getParameter("email");
             String password = request.getParameter("confirm_password");
             String telefono = request.getParameter("telefono");
+            String tp_tarjeta = request.getParameter("tp_tarjeta");
+            String no_tarjeta = request.getParameter("no_tarjeta");
+            String cvv = request.getParameter("cvv");
+            String fech_vence = request.getParameter("fech_vence");
             
-            if (nombre != null) {
-                String qry = "INSERT INTO usuario(nombre, apellido_paterno,apellido_materno,correo_electronico,clave,no_telefono) values ('" + nombre + "','" + ap_pat + "','" + ap_mat + "','" + email + "','" + password + "','" + telefono + "')";
-                sql.executeUpdate(qry);
+            if(email!=null && password!=null){
                 
-                String qry1="select * from usuario where correo_electronico='"+email+"'"+" AND clave='"+password+"'";
-                ResultSet data = sql.executeQuery(qry1);
-                if(data.next()){
-                    String id_cliente=data.getString("id_usuario");
+                String validar_email="select * from usuario where correo_electronico='"+email+"'";
+                ResultSet validar1 = sql.executeQuery(validar_email);
                 
-                String qry2 = "INSERT INTO cliente(id_usuario) values ('"+id_cliente+"')";
-                sql.executeUpdate(qry2);
-                out.print("<script>alert('Registro exitoso')</script>");
-                response.sendRedirect("iniciar_sesion.jsp");
+                if(validar1.next()){
+                out.print("<script>alert('ERROR: El correo electronico ya está en uso')</script>");
+                
                 }else{
-                    out.print("<script>alert('Error al registrar')</script>");
+                    String validar_tarjeta="select * from tarjeta where no_tarjeta='"+no_tarjeta+"'";
+                    ResultSet validar2 = sql.executeQuery(validar_tarjeta);
+                
+                    if(validar2.next()){
+                    out.print("<script>alert('ERROR: El numero de tarjeta ya está en uso')</script>");
+                    
+                    }else{
+                        String qry = "INSERT INTO usuario(nombre, apellido_paterno,apellido_materno,correo_electronico,clave,no_telefono) values ('" + nombre + "','" + ap_pat + "','" + ap_mat + "','" + email + "','" + password + "','" + telefono + "')";
+                        sql.executeUpdate(qry);
+                        
+                        String qry1="select * from usuario where correo_electronico='"+email+"'"+" AND clave='"+password+"'";
+                        ResultSet data = sql.executeQuery(qry1);
+                    
+                        if(data.next()){
+                            String qry2 = "INSERT INTO tarjeta values ('"+tp_tarjeta+"','"+no_tarjeta+"','"+cvv+"','"+fech_vence+"')";
+                            sql.executeUpdate(qry2);
+                    
+                            String qry3="select * from tarjeta where no_tarjeta='"+no_tarjeta+"'";
+                            ResultSet data2 = sql.executeQuery(qry3);
+                    
+                            if(data2.next()){
+                                String id="select * from usuario where correo_electronico='"+email+"' and clave='"+password+"'";
+                                ResultSet id1 = sql.executeQuery(id);
+                                id1.next();
+                                String id_cliente=id1.getString("id_usuario");
+                        
+                                String qry4 = "INSERT INTO cliente values ('"+id_cliente+"','"+no_tarjeta+"')";
+                                sql.executeUpdate(qry4);
+                        
+                                out.print("<script>alert('Registro exitoso')</script>");
+                                response.sendRedirect("iniciar_sesion.jsp");
+                        
+                            }else{
+                                out.print("<script>alert('Error al registrar')</script>");
+                            }
+                        }else{
+                            out.print("<script>alert('Error al registrar')</script>");
+                        }
+                    }
                 }
+            }else{
+                
             }
-
-
+            
         %>
         <header class="header" style="height: 70px">
             <div class="bg-dark">
@@ -61,7 +99,7 @@
                             <div class=" navg navbar-nav w-100 justify-content-center " >
                                 <a class="nav-item nav-link active" href="../index.html">inicio</a>
                                 <a class="nav-item nav-link" href="../HTML/servicios.html">Servicios</a>
-                                <a class="nav-item nav-link" href="../JSP1/inicio.jsp">Iniciar Sesión</a>
+                                <a class="nav-item nav-link" href="../JSP1/iniciar_sesion.jsp">Iniciar Sesión</a>
                                 <a class="nav-item nav-link" href="#">Contacto</a>
                             </div>
                         </div>
@@ -100,6 +138,31 @@
                                                 <input name="telefono" type="text" class="form-control" id="telefono" placeholder="Ej:55-3463-4867" value=""><br>
                                             </div>
                                         </div>
+                                        <h4>Datos bancarios</h4>
+                                        <div class="row">
+                                            <div class="col">
+                                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tipo de tarjeta</label>
+                                                <select class="custom-select my-1 mr-sm-2" id="tipo" name="tp_tarjeta">
+                                                    <option selected value="">Elige una opción</option>
+                                                    <option value="Credito">Crédito</option>
+                                                    <option value="Debito">Débito</option>
+                                                </select><br>
+                                            </div>
+                                            <div class="col">
+                                                <label for="apellidopat">Número de tarjeta</label>
+                                                <input name="no_tarjeta" type="text" class="form-control" id="apellidopat" placeholder="16 digitos" value="">
+                                            </div>
+                                        </div><br>
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="apellidomat">CVV(Reverso de la tarjeta)</label>
+                                                <input name="cvv" type="text" class="form-control" id="apellidomat" placeholder="111" value="">
+                                            </div>
+                                            <div class="col">
+                                                <label for="apellidomat">Fecha de vencimiento</label>
+                                                <input name="fech_vence" type="month" class="form-control" id="apellidomat" step="1" min="2020-07" max="2035-12">
+                                            </div>
+                                        </div><br>
                                         <h4>Datos de la Cuenta</h4>
                                         <div class="row">
                                             <div class="col-8">

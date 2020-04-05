@@ -1,4 +1,4 @@
-
+<%@include file="conexion.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -49,7 +49,7 @@
             
                             String datos="select * from usuario where id_usuario='"+id_usuario+"'";
                             ResultSet datos1 = sql.executeQuery(datos);
-                            datos1.next();  
+                            datos1.next();
                         %>
                         <div class="card-header"><h3 style="text-align: center">Bienvenido <% out.print(datos1.getString("nombre")+" "+datos1.getString("apellido_paterno")); %></h3></div>
                         <div class="card-body">

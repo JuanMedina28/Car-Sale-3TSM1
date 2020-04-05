@@ -1,4 +1,4 @@
-
+<%@include file="conexion.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
