@@ -6,7 +6,6 @@ body{
     background: url(../Images/camaro.jpg);
     width: 100%;
     min-height: 100vh;
-    background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -22,7 +21,6 @@ body{
 }
 
 .bg-dark{
-    position: fixed;
     z-index: 20;
     width: 100%;
 }
@@ -96,4 +94,6 @@ body{
 .footer{
     color:#FFFFFF;
     background: #222222;
+    position: absolute;
+    display: inline-table;
 }

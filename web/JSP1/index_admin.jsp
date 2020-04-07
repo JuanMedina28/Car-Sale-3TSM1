@@ -28,8 +28,8 @@
                             <div class=" navg navbar-nav w-100 justify-content-center " >
                                 <a class="nav-item nav-link active" href="../index.html">Inicio</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
+                                <a class="nav-item nav-link" href="../JSP1/catalogo_autos.jsp">Catalogo</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_admin.jsp">Mi cuenta</a>
-                                <a class="nav-item nav-link" href="#">Contacto</a>
                             </div>
                         </div>
                     </nav>
@@ -57,13 +57,25 @@
                                 <div style="margin-left: 15%;">
                                     <a href="admin_registrar_empleados.jsp"><button type="button" class="btn btn-success"  style="width: 25%">Registrar</button></a>
                                     <a href="admin_consultar_empleados.jsp"><button type="button" class="btn btn-info"  style="width: 25%">Consultar</button></a>
-                                    <a href="admin_modificar_empleados.jsp"><button type="button" class="btn btn-danger"  style="width: 25%">Modificar</button></a>
+                                    <a href="admin_consultar_empleados.jsp"><button type="button" class="btn btn-danger"  style="width: 25%">Modificar</button></a>
                                 </div><br>
                                 <h4>Clientes</h4>
                                 <div style="margin-left: 15%;">
                                     <a href="admin_registrar_clientes.jsp"><button type="button" class="btn btn-success"  style="width: 25%">Registrar</button></a>
                                     <a href="admin_consultar_clientes.jsp"><button type="button" class="btn btn-info"  style="width: 25%">Consultar</button></a>
-                                </div><br><br>
+                                </div><br>
+                                <h4>Automoviles</h4>
+                                <div style="margin-left: 15%;">
+                                    <a href="admin_registrar_automovil.jsp"><button type="button" class="btn btn-success"  style="width: 25%">Registrar</button></a>
+                                    <a href="admin_consultar_automovil.jsp"><button type="button" class="btn btn-info"  style="width: 25%">Consultar</button></a>
+                                    <a href="#"><button type="button" class="btn btn-danger"  style="width: 25%">Modificar</button></a>
+                                </div><br>
+                                <h4>Empleados</h4>
+                                <div style="margin-left: 15%;">
+                                    <a href="admin_registrar_empleados.jsp"><button type="button" class="btn btn-success"  style="width: 25%">Registrar</button></a>
+                                    <a href="admin_consultar_empleados.jsp"><button type="button" class="btn btn-info"  style="width: 25%">Consultar</button></a>
+                                    <a href="admin_consultar_empleados.jsp"><button type="button" class="btn btn-danger"  style="width: 25%">Modificar</button></a>
+                                </div><br>
                             </form>
                             <a href="../JSP1/cerrar_sesion.jsp"><button type="button" class="btn btn-dark"  style="width: 25%">Cerrar Sesion</button></a>
                         </div>

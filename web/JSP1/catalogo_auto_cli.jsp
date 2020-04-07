@@ -48,21 +48,21 @@
                         <img class="d-block w-100" src="../Images/2019-Chevrolet-Camaro-Turbo-1LE-41.webp" alt="Primer slide" style="height: 600px;">
                         <div class="carousel-caption d-none d-md-block">
                             <h3>Chevrolet Camaro Turbo</h3>
-                            <p>Cónocelo</p>
+                            <p>Conocelo</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img class="d-block w-100" src="../Images/chevrolet-camaro-ss-muscle-car.jpg" alt="Segundo slide" style="height: 600px;">
                         <div class="carousel-caption d-none d-md-block">
                             <h3>Chevrolet Camaro SS Muscle</h3>
-                            <p>Cónocelo</p>
+                            <p>Conocelo</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img class="d-block w-100" src="../Images/cavalier.jpg" alt="Tercer slide" style="height: 600px;">
                         <div class="carousel-caption d-none d-md-block">
                             <h3>Chevrolet Cavalier</h3>
-                            <p>Cónocelo</p>
+                            <p>Conocelo</p>
                         </div>
                     </div>
                 </div>

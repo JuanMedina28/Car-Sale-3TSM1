@@ -48,38 +48,71 @@
                 </form>
                 <a href="index_admin.jsp"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-top: -14%; height: 40px;">Regresar</button></a>
             </div>
-             <%                
-                String qry = "select * from usuario";
-                ResultSet datas = sql.executeQuery(qry);
+            <%                
+               String qry = "select * from usuario inner join cliente on usuario.id_usuario=cliente.id_usuario inner join tarjeta on cliente.no_tarjeta=tarjeta.no_tarjeta where tipo_usuario='usuario'";
+               ResultSet datos1 = sql.executeQuery(qry);
             %>
+
             <div style="display: inline-table">
-                <table class="table table-hover table-dark" style="position: absolute; width: 70%; margin-left: 15%;">
+                <table class="table table-hover table-dark" style="width: 85%; margin-left: 7.5%;">
                     <thead>
                         <tr>
-                            <th colspan="6" style="font-size: 20px; text-align: center">Datos Personales</th>
+                            <th colspan="5" style="text-align: center; font-size: 20px;">Datos Personales</th>
+                            <th colspan="3" style="text-align: center; font-size: 20px;">Datos de la cuenta</th>
+                            <th colspan="4" style="text-align: center; font-size: 20px;">Datos Bancarios</th>
+                            <th colspan="1" style="text-align: center; font-size: 20px;">Modificar</th>
                         </tr>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nombres(s)</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre (s)</th>
                             <th scope="col">Aepllido Paterno</th>
                             <th scope="col">Apellido Materno</th>
-                            <th scope="col">Correo Electrónico</th>
                             <th scope="col">No. Teléfono</th>
+                            <th scope="col">Correo Electrónico</th>
+                            <th scope="col">Contraseña Actual</th>
+                            <th scope="col">Tipo Usuario</th>
+                            <th scope="col">Tipo Tarjeta</th>
+                            <th scope="col">No. Tarjeta</th>
+                            <th scope="col">CVV</th>
+                            <th scope="col">Fech. Vencimiento</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
-                    <% while (datas.next()) {%>
+                    <% while (datos1.next()){ %>
                     <tbody>
                         <tr>
-                         <td><% out.print(datas.getString(1)); %></td>
-                            <td><% out.print(datas.getString(2)); %></td>
-                            <td><% out.print(datas.getString(3)); %></td>
-                            <td><% out.print(datas.getString(4)); %></td>
-                            <td><% out.print(datas.getString(5)); %></td>
-                            <td><% out.print(datas.getString(7)); %></td>
+                            <th scope="row"><% out.print(datos1.getString("id_usuario")); %></th>
+                            <td><% out.print(datos1.getString("nombre")); %></td>
+                            <td><% out.print(datos1.getString("apellido_paterno")); %></td>
+                            <td><% out.print(datos1.getString("apellido_materno")); %></td>
+                            <td><% out.print(datos1.getString("no_telefono")); %></td>
+                            <td><% out.print(datos1.getString("correo_electronico")); %></td>
+                            <td><% out.print(datos1.getString("clave")); %></td>
+                            <td><% out.print(datos1.getString("tipo_usuario")); %></td>
+                            <td><% out.print(datos1.getString("tipo_tarjeta")); %></td>
+                            <td><% out.print(datos1.getString("no_tarjeta")); %></td>
+                            <td><% out.print(datos1.getString("cvv")); %></td>
+                            <td><% out.print(datos1.getString("fecha_vence")); %></td>
+                            <td><a href="#"><img src="../Icons/ic_delete_sweep_white_36dp.png"></a></td>
                         </tr>
                         <% }%>
                     </tbody>
                 </table>
+                <nav aria-label="..." style="background-color: #0099ff; width: 85%; margin-left: 7.5%; margin-bottom: 50px; margin-top: -1.5%">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </header>
 

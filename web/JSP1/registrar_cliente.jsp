@@ -83,10 +83,7 @@
                         }
                     }
                 }
-            }else{
-                
             }
-            
         %>
         <header class="header" style="height: 70px">
             <div class="bg-dark">

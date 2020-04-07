@@ -27,6 +27,8 @@
                     sesion_act.setAttribute("email",varuser);
                     sesion_act.setAttribute("id_usuario",data.getString("id_usuario"));
                     response.sendRedirect("sesion.jsp");
+                }else{
+                    out.print("<script>alert('Correo y/o contraseña incorrectos')</script>");
                 }
             }
 

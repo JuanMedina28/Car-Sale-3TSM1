@@ -42,7 +42,7 @@
                 ResultSet validar1 = sql.executeQuery(validar_email);
                 
                 if(validar1.next()){
-                out.print("<script>alert('ERROR: El correo electronico ya está en uso')</script>");
+                    out.print("<script>alert('ERROR: El correo electronico ya está en uso')</script>");
                 
                 }else{
                     String qry = "INSERT INTO usuario(nombre, apellido_paterno,apellido_materno,correo_electronico,clave,no_telefono,tipo_usuario) values ('" + nombre + "','" + ap_pat + "','" + ap_mat + "','" + email + "','" + password + "','" + telefono + "','" + tipo_usu + "')";
