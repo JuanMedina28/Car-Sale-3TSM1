@@ -57,7 +57,7 @@
                ResultSet datos1 = sql.executeQuery(datos);
             %>
             <div style="display: inline-table">
-                <table class="table table-hover table-dark" style="width: 85%; margin-left: 6%;">
+                <table class="table table-hover table-dark" style="width: 85%; margin-left: 5%;">
                     <thead>
                         <tr>
                             <th scope="col"></th>
@@ -104,12 +104,12 @@
                             <td><% out.print(datos1.getString("area")); %></td>
                             <td><% out.print(datos1.getString("sueldo")); %></td>
                             <td><a href="admin_modificar_empleados.jsp?id_emple=<% out.print(datos1.getString("id_usuario")); %>"><img src="../Icons/ic_create_white_36dp.png"></a></td>
-                            <td><a href="#"><img src="../Icons/ic_delete_sweep_white_36dp.png"></a></td>
+                            <td><a href="admin_eliminar_empleado.jsp?id_emple=<% out.print(datos1.getString("id_usuario")); %>"><img src="../Icons/ic_delete_sweep_white_36dp.png"></a></td>
                         </tr>
                         <% }%>
                     </tbody>
                 </table>
-                <nav aria-label="..." style="background-color: #0099ff; width: 88.8%; margin-left: 6%; margin-bottom: 50px; margin-top: -1.5%">
+                <!--<nav aria-label="..." style="background-color: #0099ff; width: 88.8%; margin-left: 5%; margin-bottom: 50px; margin-top: -1.1%">
                     <ul class="pagination justify-content-center">
                         <li class="page-item">
                             <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
@@ -123,11 +123,11 @@
                             <a class="page-link" href="#">Next</a>
                         </li>
                     </ul>
-                </nav>
+                </nav>-->
             </div>
         </header>
 
-        <footer class="footer py-2 txt-xs-center">
+                    <footer class="footer py-2 txt-xs-center" style="width: 100%">
             <div class="container">
                 <p>2020? CARSALE.COM Todos los derechos reservados</p>
             </div>

@@ -94,8 +94,8 @@
                             }
                             
                             String info="select * from usuario inner join empleado on usuario.id_usuario=empleado.id_usuario where usuario.id_usuario='"+id_empleado+"'";
-                                                ResultSet info1 = sql.executeQuery(info);
-                                                info1.next();
+                            ResultSet info1 = sql.executeQuery(info);
+                            info1.next();
                         %>
                         <div class="card-header"><h3>Modificar un empleado</h3></div>
                         <div class="card-body">

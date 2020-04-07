@@ -98,7 +98,7 @@
                         <% }%>
                     </tbody>
                 </table>
-                <nav aria-label="..." style="background-color: #0099ff; width: 85%; margin-left: 7.5%; margin-bottom: 50px; margin-top: -1.5%">
+                <!--<nav aria-label="..." style="background-color: #0099ff; width: 88.8%; margin-left: 5%; margin-bottom: 50px; margin-top: -1.1%">
                     <ul class="pagination justify-content-center">
                         <li class="page-item">
                             <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
@@ -112,11 +112,11 @@
                             <a class="page-link" href="#">Next</a>
                         </li>
                     </ul>
-                </nav>
+                </nav>-->
             </div>
         </header>
 
-        <footer class="footer py-2 txt-xs-center">
+        <footer class="footer py-2 txt-xs-center" style="width: 100%">
             <div class="container">
                 <p>2020? CARSALE.COM Todos los derechos reservados</p>
             </div>

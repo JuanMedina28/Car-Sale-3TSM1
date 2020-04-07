@@ -1,5 +1,4 @@
 <%@include file="conexion.jsp" %>
-<!DOCTYPE html>
 <html>
     <head>
         <title>Index Administrador</title>
@@ -45,33 +44,48 @@
                             HttpSession sesion = request.getSession();
                             String email=(String)sesion.getAttribute("email");
                             String id_usuario=(String)sesion.getAttribute("id_usuario");
-            
-                            String datos="select * from usuario where id_usuario='"+id_usuario+"'";
-                            ResultSet datos1 = sql.executeQuery(datos);
-                            datos1.next();  
+               
+                            String id_empleado=request.getParameter("id_emple");
+                            String password=request.getParameter("password");
+                            
+                            if(password!=null){
+                                String validar_password="select * from usuario inner join empleado on usuario.id_usuario=empleado.id_usuario where usuario.id_usuario='"+id_usuario+"'";
+                                ResultSet validar_password1 = sql.executeQuery(validar_password);
+                                validar_password1.next();
+                                String clave=validar_password1.getString("clave");
+                                
+                                if(password!=""+clave+""){
+                                    response.sendRedirect("ad_eliminar_empleado.jsp?id_emple="+id_empleado+"");
+                                    
+                                }else{
+                                    out.print("<script>alert('Contraseña incorrecta, intenta otra vez')</script>");
+                                }
+                                
+                            }
+                            String info="select * from usuario inner join empleado on usuario.id_usuario=empleado.id_usuario where usuario.id_usuario='"+id_empleado+"'";
+                            ResultSet info1 = sql.executeQuery(info);
+                            info1.next();
+                            String nombre=info1.getString("nombre");
+                            String apellido=info1.getString("apellido_materno");
+                            
                         %>
-                        <div class="card-header"><h3 style="text-align: center">Bienvenido <% out.print(datos1.getString("nombre")+" "+datos1.getString("apellido_paterno")); %></h3></div>
+                        <div class="card-header"><h3 style="text-align: center">Eliminar empleado</h3></div><br>
                         <div class="card-body">
-                            <form id="form1" action="#" method="post" class="needs-validation">
-                                <h4>Empleados</h4>
-                                <div style="margin-left: 15%;">
-                                    <a href="admin_registrar_empleados.jsp"><button type="button" class="btn btn-success"  style="width: 25%">Registrar</button></a>
-                                    <a href="admin_consultar_empleados.jsp"><button type="button" class="btn btn-info"  style="width: 25%">Consultar</button></a>
-                                    <a href="admin_consultar_empleados.jsp"><button type="button" class="btn btn-danger"  style="width: 25%">Modificar</button></a>
+                            <form id="form1" action="admin_eliminar_empleado.jsp?id_emple=<% out.print(info1.getString("id_usuario")); %>" method="post" class="needs-validation">
+                                <div style="text-align: center">
+                                    <h3>Se eliminará a <% out.print(info1.getString("nombre")+" "+info1.getString("apellido_paterno")); %></h3>
                                 </div><br>
-                                <h4>Clientes</h4>
-                                <div style="margin-left: 15%;">
-                                    <a href="admin_registrar_clientes.jsp"><button type="button" class="btn btn-success"  style="width: 25%">Registrar</button></a>
-                                    <a href="admin_consultar_clientes.jsp"><button type="button" class="btn btn-info"  style="width: 25%">Consultar</button></a>
-                                </div><br>
-                                <h4>Automoviles</h4>
-                                <div style="margin-left: 15%;">
-                                    <a href="admin_registrar_automovil.jsp"><button type="button" class="btn btn-success"  style="width: 25%">Registrar</button></a>
-                                    <a href="admin_consultar_automovil.jsp"><button type="button" class="btn btn-info"  style="width: 25%">Consultar</button></a>
-                                    <a href="#"><button type="button" class="btn btn-danger"  style="width: 25%">Modificar</button></a>
-                                </div><br>
+                                <div style="text-align: center">
+                                    <div class="col-4">
+                                        <label for="correo">Ingresa tu contraseña para continuar</label>
+                                        <input name="password" type="password" class="form-control" id="password" placeholder="************" value=""><br>
+                                    </div>
+                                </div><br><br>
+                                <div style="margin-left: 25%;">
+                                    <button type="submit" class="btn btn-danger"  style="width: 25%">Eliminar</button>
+                                    <a href="../JSP1/admin_consultar_empleados.jsp"><button type="button" class="btn btn-success"  style="width: 25%;margin-left: 15%;">Cancelar</button></a>
+                                </div>
                             </form>
-                            <a href="../JSP1/cerrar_sesion.jsp"><button type="button" class="btn btn-dark"  style="width: 25%">Cerrar Sesion</button></a>
                         </div>
                     </div>
                 </div>
@@ -80,3 +94,4 @@
         </div>
     </body>
 </html>
+
