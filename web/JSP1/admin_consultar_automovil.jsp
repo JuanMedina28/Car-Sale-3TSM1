@@ -35,20 +35,24 @@
                             <div class=" navg navbar-nav w-100 justify-content-center " >
                                 <a class="nav-item nav-link active" href="../index.html">Inicio</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
+                                <a class="nav-item nav-link" href="../JSP1/catalogo_autos.jsp">Catalogo</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_admin.jsp">Mi cuenta</a>
-                                <a class="nav-item nav-link" href="#">Contacto</a>
                             </div>
                         </div>
                     </nav>
                 </div>
             </div><br><br><br><br>
             <div class="alert alert-primary" role="alert" style="width: 50%; margin-left: 25%;"><h4 style="margin-left: 15%;">Buscar por campo:</h4>
-                <form action="admin_consultar_automovil.jsp" method="post">
-                    <input name="aid" type="text" class="form-control" style="width: 200px;" id="aid" placeholder="id Auto" value=""><br>
-                    <button type="button" class="btn btn-outline-primary" style="margin-left: 50%; margin-top: -9%; height: 40px;">Buscar</button>
-                    <a href="index_admin.jsp"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-top: -9%; height: 40px;">Regresar</button></a>
+                <form action="consultas-empleados.html" method="post">
+                    <select class="form-control form-control-sm" style="width: 30%; margin-left: 15%; margin-top: 2%;" name="filtro">
+                        <option selected>Elige una opcion</option>
+                        <option value="Ventas">Ventas</option>
+                        <option value="Almacen">Almacen</option>
+                        <option value="Mecanico">Mecanico</option>
+                    </select>
+                    <button type="button" class="btn btn-outline-primary" style="margin-left: 50%; margin-top: -6%; height: 40px;">Buscar</button>
                 </form>
-                
+                <a href="index_admin.jsp"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-top: -12%; height: 40px;">Regresar</button></a>
             </div>
              <%                
                 String qry = "select * from automovil";
@@ -59,30 +63,33 @@
                 <table class="table table-hover table-dark" style="position: absolute; width: 70%; margin-left: 15%;">
                     <thead>
                         <tr>
-                            <th colspan="7" style="font-size: 20px; text-align: center">Datos del Automovil</th>
+                            <th colspan="9" style="font-size: 20px; text-align: center">Datos del Automovil</th>
                         </tr>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">ID</th>
                             <th scope="col">No. Serie</th>
                             <th scope="col">Marca</th>
                             <th scope="col">Modelo</th>
                             <th scope="col">Color</th>
                             <th scope="col">Subtotal</th>
                             <th scope="col">Total</th>
+                            <th scope="col">Editar</th>
+                            <th scope="col">Eliminar</th>
                         </tr>
                     </thead>
                     <% while (datas.next()) {%>
                    
                     <tbody>
                         <tr>
-                         <td></td>
-                            <td><% out.print(datas.getString(1)); %></td>
-                            <td><% out.print(datas.getString(2)); %></td>
-                            <td><% out.print(datas.getString(3)); %></td>
-                            <td><% out.print(datas.getString(4)); %></td>
-                            <td><% out.print(datas.getString(5)); %></td>
-                            <td><% out.print(datas.getString(7)); %></td>
-                           
+                            <td><% out.print(datas.getString("id_auto")); %></td>
+                            <td><% out.print(datas.getString("no_serie")); %></td>
+                            <td><% out.print(datas.getString("marca")); %></td>
+                            <td><% out.print(datas.getString("modelo")); %></td>
+                            <td><% out.print(datas.getString("color")); %></td>
+                            <td><% out.print(datas.getString("subtotal")); %></td>
+                            <td><% out.print(datas.getString("total")); %></td>
+                            <td><a href="admin_modificar_automovil.jsp?id_auto=<% out.print(datas.getString("id_auto")); %>"><img src="../Icons/ic_create_white_36dp.png"></a></td>
+                            <td><a href="#?id_emple=<% out.print(datas.getString("id_auto")); %>"><img src="../Icons/ic_delete_sweep_white_36dp.png"></a></td>
                         </tr>
                         <% }%>
                     </tbody>
@@ -93,7 +100,7 @@
         
         
         
-        <footer class="footer py-2 txt-xs-center">
+                    <footer class="footer py-2 txt-xs-center" style="width: 100%">
             <div class="container">
                 <p>2020? CARSALE.COM Todos los derechos reservados</p>
             </div>

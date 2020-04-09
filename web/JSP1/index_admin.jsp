@@ -68,7 +68,7 @@
                                 <div style="margin-left: 15%;">
                                     <a href="admin_registrar_automovil.jsp"><button type="button" class="btn btn-success"  style="width: 25%">Registrar</button></a>
                                     <a href="admin_consultar_automovil.jsp"><button type="button" class="btn btn-info"  style="width: 25%">Consultar</button></a>
-                                    <a href="#"><button type="button" class="btn btn-danger"  style="width: 25%">Modificar</button></a>
+                                    <a href="admin_consultar_automovil.jsp"><button type="button" class="btn btn-danger"  style="width: 25%">Modificar</button></a>
                                 </div><br>
                             </form>
                             <a href="../JSP1/cerrar_sesion.jsp"><button type="button" class="btn btn-dark"  style="width: 25%">Cerrar Sesion</button></a>

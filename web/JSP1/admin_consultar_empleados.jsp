@@ -82,7 +82,7 @@
                             <th scope="col">Área</th>
                             <th scope="col">Sueldo</th>
                             <th scope="col">Editar</th>
-                            <th scope="col">Modificar</th>
+                            <th scope="col">Eliminar</th>
                         </tr>
                     </thead>
                     <% while (datos1.next()) {%>

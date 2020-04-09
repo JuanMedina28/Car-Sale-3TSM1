@@ -29,8 +29,8 @@
                             <div class=" navg navbar-nav w-100 justify-content-center " >
                                 <a class="nav-item nav-link active" href="../index.html">Inicio</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
+                                <a class="nav-item nav-link" href="../JSP1/catalogo_autos.jsp">Catalogo</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_admin.jsp">Mi cuenta</a>
-                                <a class="nav-item nav-link" href="#">Contacto</a>
                             </div>
                         </div>
                     </nav>
@@ -49,7 +49,7 @@
                 <a href="index_admin.jsp"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-top: -14%; height: 40px;">Regresar</button></a>
             </div>
             <%                
-               String qry = "select * from usuario inner join cliente on usuario.id_usuario=cliente.id_usuario inner join tarjeta on cliente.no_tarjeta=tarjeta.no_tarjeta where tipo_usuario='usuario'";
+               String qry = "select * from usuario inner join cliente on usuario.id_usuario=cliente.id_usuario inner join tarjeta on cliente.no_tarjeta=tarjeta.no_tarjeta where tipo_usuario='Usuario'";
                ResultSet datos1 = sql.executeQuery(qry);
             %>
 

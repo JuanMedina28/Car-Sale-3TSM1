@@ -24,7 +24,7 @@
             datos1.next();
             String tipo_usuario=datos1.getString("tipo_usuario");
                     
-            if(tipo_usuario.equals("usuario")){
+            if(tipo_usuario.equals("Usuario")){
                 response.sendRedirect("index_cliente.jsp");
             }else if(tipo_usuario.equals("Empleado")){
                 response.sendRedirect("#");
