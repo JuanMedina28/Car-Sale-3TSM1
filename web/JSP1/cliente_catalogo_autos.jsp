@@ -13,7 +13,7 @@
 
         <!-- Material Design Bootstrap -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/css/mdb.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="main.css" type="text/css">
+        <link rel="stylesheet" href="../CSS/main-styles.css" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat&display=swap" rel="stylesheet">
 
         <title>Bienvenido a CarSale</title>
@@ -28,9 +28,10 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class=" navg navbar-nav w-100 justify-content-center " >
-                                <a class="nav-item nav-link active" href="index.html">inicio</a>
-                                <a class="nav-item nav-link" href="JSP1/index_servicios.jsp">Servicios</a>
-                                <a class="nav-item nav-link" href="JSP1/iniciar_sesion.jsp">Iniciar Sesi√≥n</a>
+                                <a class="nav-item nav-link active" href="../index.html">Inicio</a>
+                                <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
+                                <a class="nav-item nav-link" href="../JSP1/cliente_catalogo_autos.jsp">Catalogo</a>
+                                <a class="nav-item nav-link" href="../JSP1/index_cliente.jsp">Mi cuenta</a>
                                 <a class="nav-item nav-link" href="#">Contacto</a>
                             </div>
                         </div>
@@ -48,21 +49,21 @@
                         <img class="d-block w-100" src="../Images/2019-Chevrolet-Camaro-Turbo-1LE-41.webp" alt="Primer slide" style="height: 600px;">
                         <div class="carousel-caption d-none d-md-block">
                             <h3>Chevrolet Camaro Turbo</h3>
-                            <p>Conocelo</p>
+                            <p>CÛnocelo</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img class="d-block w-100" src="../Images/chevrolet-camaro-ss-muscle-car.jpg" alt="Segundo slide" style="height: 600px;">
                         <div class="carousel-caption d-none d-md-block">
                             <h3>Chevrolet Camaro SS Muscle</h3>
-                            <p>Conocelo</p>
+                            <p>CÛnocelo</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img class="d-block w-100" src="../Images/cavalier.jpg" alt="Tercer slide" style="height: 600px;">
                         <div class="carousel-caption d-none d-md-block">
                             <h3>Chevrolet Cavalier</h3>
-                            <p>Conocelo</p>
+                            <p>CÛnocelo</p>
                         </div>
                     </div>
                 </div>

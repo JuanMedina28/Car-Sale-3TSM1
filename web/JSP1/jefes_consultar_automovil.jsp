@@ -1,14 +1,15 @@
 <%-- 
-    Document   : cliente_consultar_cuenta
-    Created on : 7/03/2020, 01:12:07 PM
-    Author     : Quiron
+    Document   : admin_consultar_automovil
+    Created on : 31/03/2020, 04:16:46 PM
+    Author     : Anel L. Cruces
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<%@include file="conexion.jsp" %>
+<!doctype html>
+<html lang="Spanish">
     <head>
-        <title>Consultar Citas</title>
+        <title>Consultar Automovil</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Font Awesome -->
@@ -34,47 +35,70 @@
                             <div class=" navg navbar-nav w-100 justify-content-center " >
                                 <a class="nav-item nav-link active" href="../index.html">Inicio</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
-                                <a class="nav-item nav-link" href="../JSP1/catalogo_auto_cli.jsp">Catalogo</a>
-                                <a class="nav-item nav-link" href="../JSP1/index_cliente.jsp">Mi cuenta</a>
-                                <a class="nav-item nav-link" href="#">Contacto</a>
+                                <a class="nav-item nav-link" href="../JSP1/jefes_catalogo_autos.jsp">Catalogo</a>
+                                <a class="nav-item nav-link" href="../JSP1/index_jefes.jsp">Mi cuenta</a>
                             </div>
                         </div>
                     </nav>
                 </div>
-            </div><img class="d-block w-100" src="../Images/camaro.jpg" alt="Segundo slide" style="position: absolute;"><br><br><br><br>
-            <div class="alert alert-primary" role="alert" style="width: 50%; margin-left: 25%;">
-                <h3 style="margin-left: 20%">Citas Agendadas:</h3>
-                <a href="index_cliente.jsp"><button type="button" class="btn btn-dark" style="margin-left: 60%; margin-top: -7%; height: 40px;">Regresar</button></a>
+            </div><br><br><br><br>
+            <div class="alert alert-primary" role="alert" style="width: 50%; margin-left: 25%;"><h4 style="margin-left: 15%;">Buscar por campo:</h4>
+                <form action="consultas-empleados.html" method="post">
+                    <select class="form-control form-control-sm" style="width: 30%; margin-left: 15%; margin-top: 2%;" name="filtro">
+                        <option selected>Elige una opcion</option>
+                        <option value="Ventas">Ventas</option>
+                        <option value="Almacen">Almacen</option>
+                        <option value="Mecanico">Mecanico</option>
+                    </select>
+                    <button type="button" class="btn btn-outline-primary" style="margin-left: 50%; margin-top: -6%; height: 40px;">Buscar</button>
+                </form>
+                <a href="index_jefes.jsp"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-top: -12%; height: 40px;">Regresar</button></a>
             </div>
-            <div style="display: inline-table; margin-bottom: 10%; padding-bottom: 5%;">
-                <table class="table table-hover table-dark" style="position: absolute; width: 85%; margin-left: 7.5%;">
+             <%                
+                String qry = "select * from automovil";
+                ResultSet datos1 = sql.executeQuery(qry);
+            %>
+           
+            <div style="display: inline-table">
+                <table class="table table-hover table-dark" style="position: absolute; width: 70%; margin-left: 15%;">
                     <thead>
                         <tr>
-                            <th style="text-align: center; font-size: 20px;">Id</th>
-                            <th style="text-align: center; font-size: 20px;">Día</th>
-                            <th style="text-align: center; font-size: 20px;">Mes</th>
-                            <th style="text-align: center; font-size: 20px;">Año</th>
-                            <th style="text-align: center; font-size: 20px;">Hora</th>
-                            <th style="text-align: center; font-size: 20px;">Modificar</th>
-                            <th style="text-align: center; font-size: 20px;">Eliminar</th>
+                            <th colspan="9" style="font-size: 20px; text-align: center">Datos del Automovil</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">No. Serie</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">Color</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Editar</th>
                         </tr>
                     </thead>
+                    <% while (datos1.next()) {%>
+                   
                     <tbody>
                         <tr>
-                            <th scope="row" style="text-align: center; font-size: 15px;">1</th>
-                            <td style="text-align: center; font-size: 15px;">31</td>
-                            <td style="text-align: center; font-size: 15px;">Enero</td>
-                            <td style="text-align: center; font-size: 15px;">2021</td>
-                            <td style="text-align: center; font-size: 15px;">10:00:00 pm</td>
-                            <td style="text-align: center; font-size: 15px;"><a href="cliente_reagendar_cita.jsp"><img src="../Icons/ic_create_white_36dp.png"></a></td>
-                            <td style="text-align: center; font-size: 15px;"><a href="#"><img src="../Icons/ic_delete_sweep_white_36dp.png"></a></td>
+                            <td><% out.print(datos1.getString("id_auto")); %></td>
+                            <td><% out.print(datos1.getString("no_serie")); %></td>
+                            <td><% out.print(datos1.getString("marca")); %></td>
+                            <td><% out.print(datos1.getString("modelo")); %></td>
+                            <td><% out.print(datos1.getString("color")); %></td>
+                            <td><% out.print(datos1.getString("subtotal")); %></td>
+                            <td><% out.print(datos1.getString("total")); %></td>
+                            <td><a href="jefes_modificar_automovil.jsp?id_auto=<% out.print(datos1.getString("id_auto")); %>"><img src="../Icons/ic_create_white_36dp.png"></a></td>
                         </tr>
+                        <% }%>
                     </tbody>
                 </table>
             </div>
-        </header>
-
-        <footer class="footer py-2 txt-xs-center">
+        </header>  
+    
+        
+        
+        
+                    <footer class="footer py-2 txt-xs-center" style="width: 100%">
             <div class="container">
                 <p>2020? CARSALE.COM Todos los derechos reservados</p>
             </div>
@@ -87,7 +111,7 @@
         <!-- Bootstrap core JavaScript -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.11.0/js/mdb.min.js"></script><div class="hiddendiv common"></div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.11.0/js/mdb.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

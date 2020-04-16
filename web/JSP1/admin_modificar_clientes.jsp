@@ -28,9 +28,8 @@
                             <div class=" navg navbar-nav w-100 justify-content-center " >
                                 <a class="nav-item nav-link active" href="../index.html">Inicio</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
-                                <a class="nav-item nav-link" href="../JSP1/cliente_catalogo_autos.jsp">Catalogo</a>
-                                <a class="nav-item nav-link" href="../JSP1/index_cliente.jsp">Mi cuenta</a>
-                                <a class="nav-item nav-link" href="#">Contacto</a>
+                                <a class="nav-item nav-link" href="../JSP1/admin_catalogo_autos.jsp">Catalogo</a>
+                                <a class="nav-item nav-link" href="../JSP1/index_admin.jsp">Mi cuenta</a>
                             </div>
                         </div>
                     </nav>
@@ -46,9 +45,7 @@
                         <div class="card-body">
                             <form id="form1" action="#" method="post" class="needs-validation">
                                 <% 
-                                    HttpSession sesion = request.getSession();
-                                    String email=(String)sesion.getAttribute("email");
-                                    String id_usuario=(String)sesion.getAttribute("id_usuario");
+                                    String id_usuario=request.getParameter("id_cliente");
                             
                                     String datos="select * from usuario inner join cliente on usuario.id_usuario=cliente.id_usuario inner join tarjeta on cliente.no_tarjeta=tarjeta.no_tarjeta where usuario.id_usuario='"+id_usuario+"'";
                                     ResultSet datos1 = sql.executeQuery(datos);
@@ -78,7 +75,7 @@
                                             sql.executeUpdate(actualizar_tarjeta1);
                                             
                                             out.print("<script>alert('Modificacion exitosa')</script>");
-                                            response.sendRedirect("index_cliente.jsp");
+                                            response.sendRedirect("admin_consultar_clientes.jsp");
                                      
                                         }else if(email1!=""+correo+"" & no_tarjeta1.equals(no_tarjeta)){
                                             
@@ -87,7 +84,7 @@
                                     
                                             if(validar1.next()){
                                                 out.print("<script>alert('ERROR: El correo electronico ya está en uso')</script>");
-                                                response.sendRedirect("index_cliente.jsp");
+                                                response.sendRedirect("admin_consultar_clientes.jsp");
                                             }else{
                                                 String actualizar_usuario2="update usuario set nombre='"+nombre1+"', apellido_paterno='"+ap_pat1+"', apellido_materno='"+ap_mat1+"', correo_electronico='"+email1+"', clave='"+password1+"', no_telefono='"+telefono1+"' where id_usuario='"+id_usuario+"'";
                                                 sql.executeUpdate(actualizar_usuario2);
@@ -96,7 +93,7 @@
                                                 sql.executeUpdate(actualizar_tarjeta2);
                                                 
                                                 out.print("<script>alert('Modificacion exitosa')</script>");
-                                                response.sendRedirect("index_cliente.jsp");
+                                                response.sendRedirect("admin_consultar_clientes.jsp");
                                             }
                                         }else if(email1.equals(correo) & no_tarjeta1!=""+no_tarjeta+""){
                                             
@@ -105,7 +102,7 @@
                                     
                                             if(validar2.next()){
                                                 out.print("<script>alert('ERROR: El numero de tarjeta ya está registrado')</script>");
-                                                response.sendRedirect("index_cliente.jsp");
+                                                response.sendRedirect("admin_consultar_clientes.jsp");
                                             }else{
                                             
                                                 String actualizar_usuario3="update usuario set nombre='"+nombre1+"', apellido_paterno='"+ap_pat1+"', apellido_materno='"+ap_mat1+"', clave='"+password1+"', no_telefono='"+telefono1+"' where id_usuario='"+id_usuario+"'";
@@ -115,7 +112,7 @@
                                                 sql.executeUpdate(actualizar_tarjeta3);
                                                 
                                                 out.print("<script>alert('Modificacion exitosa')</script>");
-                                                response.sendRedirect("index_cliente.jsp");
+                                                response.sendRedirect("admin_consultar_clientes.jsp");
                                             }
                                             
                                         }else if(email1!=""+correo+"" & no_tarjeta1!=""+no_tarjeta+""){
@@ -125,14 +122,14 @@
                                     
                                             if(validar3.next()){
                                                 out.print("<script>alert('ERROR: El correo electronico ya está en uso')</script>");
-                                                response.sendRedirect("index_cliente.jsp");
+                                                response.sendRedirect("admin_consultar_clientes.jsp");
                                             }else{
                                                 String validar_tarjeta2="select * from tarjeta where no_tarjeta='"+no_tarjeta1+"'";
                                                 ResultSet validar4 = sql.executeQuery(validar_tarjeta2);
                                     
                                                 if(validar4.next()){
                                                     out.print("<script>alert('ERROR: El numero de tarjeta ya está registrado')</script>");
-                                                    response.sendRedirect("index_cliente.jsp");
+                                                    response.sendRedirect("admin_consultar_clientes.jsp");
                                                 }else{
                                             
                                                     String actualizar_usuario4="update usuario set nombre='"+nombre1+"', apellido_paterno='"+ap_pat1+"', apellido_materno='"+ap_mat1+"', correo_electronico='"+email1+"', clave='"+password1+"', no_telefono='"+telefono1+"' where id_usuario='"+id_usuario+"'";
@@ -142,7 +139,7 @@
                                                     sql.executeUpdate(actualizar_tarjeta4);
                                                     
                                                     out.print("<script>alert('Modificacion exitosa')</script>");
-                                                    response.sendRedirect("index_cliente.jsp");
+                                                    response.sendRedirect("admin_consultar_clientes.jsp");
                                                 }
                                             }
                                         }

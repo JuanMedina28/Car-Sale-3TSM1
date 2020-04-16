@@ -1,9 +1,3 @@
-<%-- 
-    Document   : admin_registrar_automovil
-    Created on : 31/03/2020, 03:12:04 PM
-    Author     : Juan J. Medina
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="conexion.jsp" %>
 
@@ -25,30 +19,6 @@
         <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat&display=swap" rel="stylesheet">
     </head>
     <body>
-        <%            
-    String serie = request.getParameter("serie");
-    String marca = request.getParameter("marca_auto");
-    String modelo = request.getParameter("modelo_auto");
-    String color = request.getParameter("color_auto");
-    String subtotal = request.getParameter("subtotal_auto");
-    String total = request.getParameter("total_auto");
-            
-    if (serie != null) {
-        String validar_serie="select * from automovil where no_serie='"+serie+"'";
-        ResultSet validar_serie1=sql.executeQuery(validar_serie);
-                
-        if(validar_serie1.next()){
-            out.print("<script>alert('ERROR: El número de serie ya está registrado')</script>");
-        }else{
-            String qry = "insert into automovil(no_serie,marca,modelo,color,subtotal,total) values ('"+serie+"','"+marca+"','"+modelo+"','"+color+"','"+subtotal+"','"+total+"')";
-            sql.executeUpdate(qry);
-            out.print("<script>alert('Registro exitoso')</script>");
-            response.sendRedirect("admin_consultar_automovil.jsp");
-        }
-
-    }
-        %>
-
         <header class="header" style="height: 70px">
             <div class="bg-dark">
                 <div>
@@ -60,59 +30,77 @@
                             <div class=" navg navbar-nav w-100 justify-content-center " >
                                 <a class="nav-item nav-link active" href="../index.html">Inicio</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
-                                <a class="nav-item nav-link" href="../JSP1/admin_catalogo_autos.jsp">Catalogo</a>
-                                <a class="nav-item nav-link" href="../JSP1/index_admin.jsp">Mi cuenta</a>
+                                <a class="nav-item nav-link" href="../JSP1/jefes_catalogo_autos.jsp">Catalogo</a>
+                                <a class="nav-item nav-link" href="../JSP1/index_jefes.jsp">Mi cuenta</a>
                             </div>
                         </div>
                     </nav>
                 </div>
             </div>
         </header>
+        <%
+            String id_auto=request.getParameter("id_auto");
+                            
+            String marca = request.getParameter("marca_auto");
+            String modelo = request.getParameter("modelo_auto");
+            String color = request.getParameter("color_auto");
+            String subtotal = request.getParameter("subtotal_auto");
+            String total = request.getParameter("total_auto");
+                            
+
+            if(marca!=null & modelo!=null){
+                                
+                String actualizar="update automovil set marca='"+marca+"', modelo='"+modelo+"', color='"+color+"', subtotal='"+subtotal+"', total='"+total+"' where id_auto='"+id_auto+"'";
+                sql.executeUpdate(actualizar);
+                                
+                out.print("<script>alert('Modificacion exitosa')</script>");
+                response.sendRedirect("jefes_consultar_automovil.jsp");
+            }
+                            
+            String datos="select * from automovil where id_auto='"+id_auto+"'";
+            ResultSet datos1=sql.executeQuery(datos);
+            datos1.next();
+        %>
         <div style="height: 30px"></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card shadow-lg p-3 mb-5 bg-white">
-                        <div class="card-header"><h3>Registrar un Automovil</h3></div>
+                        <div class="card-header"><h3>Modificar un Automovil</h3></div>
                         <div class="card-body">
-                            <form id="form1" action="admin_registrar_automovil.jsp" method="post" class="needs-validation" onsubmit="return validar();">
+                            <form id="form1" action="jefes_modificar_automovil.jsp?id_auto=<% out.print(datos1.getString("id_auto")); %>" method="post" class="needs-validation" onsubmit="return validar();">
                                 <div class="form-row">
                                     <div class="col-md4 mb-3">
                                         <h4>Datos del Auto</h4>
                                         <div class="row">
                                             <div class="col-8">
-                                                <label for="nombre">No. Serie</label>
-                                                <input name="serie" type="text" class="form-control" id="seriea" placeholder="Ej. 1GNCS13Z6M0246591" value=""><br>
-                                            </div>
-                                            <div class="col-4">
                                                 <label for="nombre">Marca</label>
-                                                <input name="marca_auto" type="text" class="form-control" id="amarca" placeholder="Ej. Chevrolet" value=""><br>
+                                                <input name="marca_auto" type="text" class="form-control" id="amarca" placeholder="Ej. Chevrolet" value="<% out.print(datos1.getString("marca")); %>"><br>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-4">
                                                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Modelo</label>
-                                                <input name="modelo_auto" type="text" class="form-control" id="amodelo" placeholder="Ej. Camaro" value="">
+                                                <input name="modelo_auto" type="text" class="form-control" id="amodelo" placeholder="Ej. Camaro" value="<% out.print(datos1.getString("modelo")); %>">
                                             </div>
                                             <div class="col-4">
                                                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Color</label>
-                                                <input name="color_auto" type="text" class="form-control" id="acolor" placeholder="Ej. Azul" value="">
+                                                <input name="color_auto" type="text" class="form-control" id="acolor" placeholder="Ej. Azul" value="<% out.print(datos1.getString("color")); %>">
                                             </div>
                                         </div><br>
                                         <h4>Precio</h4>
                                         <div class="row">
                                             <div class="col-4">
                                                 <label >Subtotal</label>
-                                                <input name="subtotal_auto" type="text" class="form-control" id="asubt" placeholder="&#36;00.00" value=""><br>
+                                                <input name="subtotal_auto" type="text" class="form-control" id="asubt" placeholder="&#36;00.00" value="<% out.print(datos1.getString("subtotal")); %>"><br>
                                             </div>
                                             <div class="col-4">
                                                 <label for="nombre">Total</label>
-                                                <input name="total_auto" type="text" class="form-control" id="atotal" placeholder="&#36;00.00" value="">
+                                                <input name="total_auto" type="text" class="form-control" id="atotal" placeholder="&#36;00.00" value="<% out.print(datos1.getString("total")); %>">
                                             </div>
-
-                                        </div>
-                                        <button class="btn btn-danger" type="submit" >Registar Automovil</button>
-                                        <a href="index_admin.jsp"><button type="button" class="btn btn-dark"  style="width: 200px; margin-left: 50%; margin-top: -10%">Regresar</button></a>
+                                        </div><br>
+                                        <button class="btn btn-danger" type="submit" >Modificar Automovil</button>
+                                        <a href="index_jefes.jsp"><button type="button" class="btn btn-dark"  style="width: 200px; margin-left: 55%; margin-top: -15%">Regresar</button></a>
                                     </div>         
                                 </div>     
                             </form>

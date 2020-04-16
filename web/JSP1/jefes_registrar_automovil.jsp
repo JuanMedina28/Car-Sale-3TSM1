@@ -43,7 +43,7 @@
             String qry = "insert into automovil(no_serie,marca,modelo,color,subtotal,total) values ('"+serie+"','"+marca+"','"+modelo+"','"+color+"','"+subtotal+"','"+total+"')";
             sql.executeUpdate(qry);
             out.print("<script>alert('Registro exitoso')</script>");
-            response.sendRedirect("admin_consultar_automovil.jsp");
+            response.sendRedirect("jefes_consultar_automovil.jsp");
         }
 
     }
@@ -60,8 +60,8 @@
                             <div class=" navg navbar-nav w-100 justify-content-center " >
                                 <a class="nav-item nav-link active" href="../index.html">Inicio</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
-                                <a class="nav-item nav-link" href="../JSP1/admin_catalogo_autos.jsp">Catalogo</a>
-                                <a class="nav-item nav-link" href="../JSP1/index_admin.jsp">Mi cuenta</a>
+                                <a class="nav-item nav-link" href="../JSP1/jefes_catalogo_autos.jsp">Catalogo</a>
+                                <a class="nav-item nav-link" href="../JSP1/index_jefes.jsp">Mi cuenta</a>
                             </div>
                         </div>
                     </nav>
@@ -75,7 +75,7 @@
                     <div class="card shadow-lg p-3 mb-5 bg-white">
                         <div class="card-header"><h3>Registrar un Automovil</h3></div>
                         <div class="card-body">
-                            <form id="form1" action="admin_registrar_automovil.jsp" method="post" class="needs-validation" onsubmit="return validar();">
+                            <form id="form1" action="jefes_registrar_automovil.jsp" method="post" class="needs-validation" onsubmit="return validar();">
                                 <div class="form-row">
                                     <div class="col-md4 mb-3">
                                         <h4>Datos del Auto</h4>
@@ -112,7 +112,7 @@
 
                                         </div>
                                         <button class="btn btn-danger" type="submit" >Registar Automovil</button>
-                                        <a href="index_admin.jsp"><button type="button" class="btn btn-dark"  style="width: 200px; margin-left: 50%; margin-top: -10%">Regresar</button></a>
+                                        <a href="index_jefes.jsp"><button type="button" class="btn btn-dark"  style="width: 200px; margin-left: 50%; margin-top: -10%">Regresar</button></a>
                                     </div>         
                                 </div>     
                             </form>

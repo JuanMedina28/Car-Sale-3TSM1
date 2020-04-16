@@ -27,7 +27,7 @@
             if(tipo_usuario.equals("Usuario")){
                 response.sendRedirect("index_cliente.jsp");
             }else if(tipo_usuario.equals("Empleado")){
-                response.sendRedirect("#");
+                response.sendRedirect("index_jefes.jsp");
             }else if(tipo_usuario.equals("Jefe")){
                 response.sendRedirect("index_jefes.jsp");
             }else if(tipo_usuario.equals("Administrador")){

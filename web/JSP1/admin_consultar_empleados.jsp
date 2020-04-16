@@ -29,7 +29,7 @@
                             <div class=" navg navbar-nav w-100 justify-content-center " >
                                 <a class="nav-item nav-link active" href="../index.html">Inicio</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
-                                <a class="nav-item nav-link" href="../JSP1/catalogo_autos.jsp">Catalogo</a>
+                                <a class="nav-item nav-link" href="../JSP1/admin_catalogo_autos.jsp">Catalogo</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_admin.jsp">Mi cuenta</a>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                String email=(String)sesion.getAttribute("email");
                String id_usuario=(String)sesion.getAttribute("id_usuario");
                 
-               String datos="select * from usuario inner join empleado on usuario.id_usuario=empleado.id_usuario where tipo_usuario='Administrador' or tipo_usuario='Jefe' or tipo_usuario='Empleado' ORDER BY usuario.id_usuario ASC FETCH FIRST 5 ROWS ONLY";
+               String datos="select * from usuario inner join empleado on usuario.id_usuario=empleado.id_usuario where tipo_usuario='Administrador' or tipo_usuario='Jefe' or tipo_usuario='Empleado'";
                ResultSet datos1 = sql.executeQuery(datos);
             %>
             <div style="display: inline-table">

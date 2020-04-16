@@ -3,7 +3,7 @@
 <!doctype html>
 <html lang="Spanish">
     <head>
-        <title>Consultar Empleado</title>
+        <title>Consultar Servicios</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Font Awesome -->
@@ -36,66 +36,63 @@
                     </nav>
                 </div>
             </div><br><br><br><br>
-            <div class="alert alert-primary" role="alert" style="width: 50%; margin-left: 25%;"><h4 style="margin-left: 15%;">Buscar por campo:</h4>
+            <div class="alert alert-primary" role="alert" style="width: 50%; margin-left: 25%;"><h4 style="margin-left: 15%;">Buscar por departamento:</h4>
                 <form action="consultas-empleados.html" method="post">
                     <select class="form-control form-control-sm" style="width: 30%; margin-left: 15%; margin-top: 2%;" name="filtro">
-                        <option selected>Elige una Opcion</option>
-                        <option value="nombre">Nombre</option>
-                        <option value="correo">Correo</option>
-                        <option value="telefono">Telefono</option>
+                        <option selected>Elige una opcion</option>
+                        <option value="Ventas">Ventas</option>
+                        <option value="Almacen">Almacen</option>
+                        <option value="Mecanico">Mecanico</option>
                     </select>
                     <button type="button" class="btn btn-outline-primary" style="margin-left: 50%; margin-top: -6%; height: 40px;">Buscar</button>
                 </form>
-                <a href="index_admin.jsp"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-top: -14%; height: 40px;">Regresar</button></a>
-            </div>
-            <%                
-               String qry = "select * from usuario inner join cliente on usuario.id_usuario=cliente.id_usuario inner join tarjeta on cliente.no_tarjeta=tarjeta.no_tarjeta where tipo_usuario='Usuario'";
-               ResultSet datos1 = sql.executeQuery(qry);
+                <a href="index_admin.jsp"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-top: -12%; height: 40px;">Regresar</button></a>
+            </div><br>
+            <%
+               HttpSession sesion = request.getSession();
+               String email=(String)sesion.getAttribute("email");
+               String id_usuario=(String)sesion.getAttribute("id_usuario");
+                
+               String datos="select * from usuario inner join cliente on usuario.id_usuario=cliente.id_usuario inner join cita on cliente.id_usuario=cita.id_cliente inner join servicio on cita.id_cita=servicio.id_cita";
+               ResultSet datos1 = sql.executeQuery(datos);
             %>
-
             <div style="display: inline-table">
-                <table class="table table-hover table-dark" style="width: 85%; margin-left: 7.5%;">
+                <table class="table table-hover table-dark" style="width: 100%; margin-left: 13%;">
                     <thead>
                         <tr>
-                            <th colspan="5" style="text-align: center; font-size: 20px;">Datos Personales</th>
-                            <th colspan="3" style="text-align: center; font-size: 20px;">Datos de la cuenta</th>
-                            <th colspan="4" style="text-align: center; font-size: 20px;">Datos Bancarios</th>
-                            <th colspan="2" style="text-align: center; font-size: 20px;">Modificar</th>
+                            <th colspan="8" style="text-align: center;font-size: 20px; text-align: center">Datos del servicio</th>
+                            <th colspan="3" style="text-align: center;font-size: 20px; text-align: center">Datos del cliente</th>
                         </tr>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nombre (s)</th>
-                            <th scope="col">Aepllido Paterno</th>
-                            <th scope="col">Apellido Materno</th>
-                            <th scope="col">No. Teléfono</th>
-                            <th scope="col">Correo Electrónico</th>
-                            <th scope="col">Contraseña Actual</th>
-                            <th scope="col">Tipo Usuario</th>
-                            <th scope="col">Tipo Tarjeta</th>
-                            <th scope="col">No. Tarjeta</th>
-                            <th scope="col">CVV</th>
-                            <th scope="col">Fech. Vencimiento</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
+                            <th scope="col">ID Cita</th>
+                            <th scope="col">Tipo de servicio</th>
+                            <th scope="col">Fecha de inicio</th>
+                            <th scope="col">Hora de inicio</th>
+                            <th scope="col">Fecha de termino</th>
+                            <th scope="col">Hora de termino</th>
+                            <th scope="col">Detalles</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Telefono</th>
                         </tr>
                     </thead>
-                    <% while (datos1.next()){ %>
+                    <% while (datos1.next()) {%>
                     <tbody>
+
                         <tr>
-                            <th scope="row"><% out.print(datos1.getString("id_usuario")); %></th>
+                            <td><% out.print(datos1.getString("id_cita")); %></td>
+                            <td><% out.print(datos1.getString("tipo_servicio")); %></td>
+                            <td><% out.print(datos1.getString("fecha_inicio")); %></td>
+                            <td><% out.print(datos1.getString("hora_inicio")); %></td>
+                            <td><% out.print(datos1.getString("fecha_termino")); %></td>
+                            <td><% out.print(datos1.getString("hora_termino")); %></td>
+                            <td><% out.print(datos1.getString("detalles")); %></td>
+                            <td><% out.print(datos1.getString("estatus")); %></td>
+                            
                             <td><% out.print(datos1.getString("nombre")); %></td>
                             <td><% out.print(datos1.getString("apellido_paterno")); %></td>
-                            <td><% out.print(datos1.getString("apellido_materno")); %></td>
                             <td><% out.print(datos1.getString("no_telefono")); %></td>
-                            <td><% out.print(datos1.getString("correo_electronico")); %></td>
-                            <td><% out.print(datos1.getString("clave")); %></td>
-                            <td><% out.print(datos1.getString("tipo_usuario")); %></td>
-                            <td><% out.print(datos1.getString("tipo_tarjeta")); %></td>
-                            <td><% out.print(datos1.getString("no_tarjeta")); %></td>
-                            <td><% out.print(datos1.getString("cvv")); %></td>
-                            <td><% out.print(datos1.getString("fecha_vence")); %></td>
-                            <td><a href="admin_modificar_clientes.jsp?id_cliente=<% out.print(datos1.getString("id_usuario")); %>"><img src="../Icons/ic_create_white_36dp.png"></a></td>
-                            <td><a href="admin_eliminar_cliente.jsp?id_cliente=<% out.print(datos1.getString("id_usuario")); %>"><img src="../Icons/ic_delete_sweep_white_36dp.png"></a></td>
                         </tr>
                         <% }%>
                     </tbody>
@@ -118,7 +115,7 @@
             </div>
         </header>
 
-        <footer class="footer py-2 txt-xs-center" style="width: 100%">
+                    <footer class="footer py-2 txt-xs-center" style="width: 100%">
             <div class="container">
                 <p>2020? CARSALE.COM Todos los derechos reservados</p>
             </div>

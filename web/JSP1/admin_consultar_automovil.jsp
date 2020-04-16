@@ -35,7 +35,7 @@
                             <div class=" navg navbar-nav w-100 justify-content-center " >
                                 <a class="nav-item nav-link active" href="../index.html">Inicio</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
-                                <a class="nav-item nav-link" href="../JSP1/catalogo_autos.jsp">Catalogo</a>
+                                <a class="nav-item nav-link" href="../JSP1/admin_catalogo_autos.jsp">Catalogo</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_admin.jsp">Mi cuenta</a>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
             </div>
              <%                
                 String qry = "select * from automovil";
-                ResultSet datas = sql.executeQuery(qry);
+                ResultSet datos1 = sql.executeQuery(qry);
             %>
            
             <div style="display: inline-table">
@@ -77,19 +77,19 @@
                             <th scope="col">Eliminar</th>
                         </tr>
                     </thead>
-                    <% while (datas.next()) {%>
+                    <% while (datos1.next()) {%>
                    
                     <tbody>
                         <tr>
-                            <td><% out.print(datas.getString("id_auto")); %></td>
-                            <td><% out.print(datas.getString("no_serie")); %></td>
-                            <td><% out.print(datas.getString("marca")); %></td>
-                            <td><% out.print(datas.getString("modelo")); %></td>
-                            <td><% out.print(datas.getString("color")); %></td>
-                            <td><% out.print(datas.getString("subtotal")); %></td>
-                            <td><% out.print(datas.getString("total")); %></td>
-                            <td><a href="admin_modificar_automovil.jsp?id_auto=<% out.print(datas.getString("id_auto")); %>"><img src="../Icons/ic_create_white_36dp.png"></a></td>
-                            <td><a href="#?id_emple=<% out.print(datas.getString("id_auto")); %>"><img src="../Icons/ic_delete_sweep_white_36dp.png"></a></td>
+                            <td><% out.print(datos1.getString("id_auto")); %></td>
+                            <td><% out.print(datos1.getString("no_serie")); %></td>
+                            <td><% out.print(datos1.getString("marca")); %></td>
+                            <td><% out.print(datos1.getString("modelo")); %></td>
+                            <td><% out.print(datos1.getString("color")); %></td>
+                            <td><% out.print(datos1.getString("subtotal")); %></td>
+                            <td><% out.print(datos1.getString("total")); %></td>
+                            <td><a href="admin_modificar_automovil.jsp?id_auto=<% out.print(datos1.getString("id_auto")); %>"><img src="../Icons/ic_create_white_36dp.png"></a></td>
+                            <td><a href="admin_eliminar_automovil.jsp?id_auto=<% out.print(datos1.getString("id_auto")); %>"><img src="../Icons/ic_delete_sweep_white_36dp.png"></a></td>
                         </tr>
                         <% }%>
                     </tbody>

@@ -28,10 +28,10 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class=" navg navbar-nav w-100 justify-content-center " >
-                                <a class="nav-item nav-link active" href="index.html">inicio</a>
-                                <a class="nav-item nav-link" href="JSP1/index_servicios.jsp">Servicios</a>
-                                <a class="nav-item nav-link" href="JSP1/iniciar_sesion.jsp">Iniciar Sesión</a>
-                                <a class="nav-item nav-link" href="#">Contacto</a>
+                                <a class="nav-item nav-link active" href="../index.html">Inicio</a>
+                                <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
+                                <a class="nav-item nav-link" href="../JSP1/admin_catalogo_autos.jsp">Catalogo</a>
+                                <a class="nav-item nav-link" href="../JSP1/index_admin.jsp">Mi cuenta</a>
                             </div>
                         </div>
                     </nav>

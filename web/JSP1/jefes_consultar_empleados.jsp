@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="conexion.jsp" %>
 <!doctype html>
 <html lang="Spanish">
     <head>
@@ -27,98 +29,89 @@
                             <div class=" navg navbar-nav w-100 justify-content-center " >
                                 <a class="nav-item nav-link active" href="../index.html">Inicio</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
-                                <a class="nav-item nav-link" href="#">Catalogo</a>
+                                <a class="nav-item nav-link" href="../JSP1/jefes_catalogo_autos.jsp">Catalogo</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_jefes.jsp">Mi cuenta</a>
-                                <a class="nav-item nav-link" href="#">Contacto</a>
                             </div>
                         </div>
                     </nav>
                 </div>
             </div><br><br><br><br>
-            <div class="alert alert-primary" role="alert" style="width: 50%; margin-left: 25%;"><h4 style="margin-left: 15%;">Buscar por campo:</h4>
-                <form action="jefes_consultar_empleados.jsp" method="post">
+            <div class="alert alert-primary" role="alert" style="width: 50%; margin-left: 25%;"><h4 style="margin-left: 15%;">Buscar por departamento:</h4>
+                <form action="consultas-empleados.html" method="post">
                     <select class="form-control form-control-sm" style="width: 30%; margin-left: 15%; margin-top: 2%;" name="filtro">
                         <option selected>Elige una opcion</option>
-                        <option value="sueldo">Sueldo</option>
-                        <option value="correo">Correo electrÛnico</option>
-                        <option value="puesto">Puesto</option>
+                        <option value="Ventas">Ventas</option>
+                        <option value="Almacen">Almacen</option>
+                        <option value="Mecanico">Mecanico</option>
                     </select>
                     <button type="button" class="btn btn-outline-primary" style="margin-left: 50%; margin-top: -6%; height: 40px;">Buscar</button>
                 </form>
                 <a href="index_jefes.jsp"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-top: -12%; height: 40px;">Regresar</button></a>
-            </div>
+            </div><br>
+            <%
+               HttpSession sesion = request.getSession();
+               String email=(String)sesion.getAttribute("email");
+               String id_usuario=(String)sesion.getAttribute("id_usuario");
+               
+                
+               String datos="select * from usuario inner join empleado on usuario.id_usuario=empleado.id_usuario where area=(select area from empleado where id_usuario='"+id_usuario+"') and puesto not like'Administrador'";
+               ResultSet datos1 = sql.executeQuery(datos);
+            %>
             <div style="display: inline-table">
-                <table class="table table-hover table-dark" style="position: absolute; width: 85%; margin-left: 7.5%;">
+                <table class="table table-hover table-dark" style="width: 85%; margin-left: 5%;">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th colspan="6" style="font-size: 20px; text-align: center">Datos Personales</th>
-                            <th colspan="5" style="font-size: 20px; text-align: center">Direccion</th>
-                            <th colspan="3" style="font-size: 20px; text-align: center">Datos empresariales</th>
-                            <th scope="col" style="font-size: 20px; text-align: center">Modificar</th>
+                            <th scope="col"></th>
+                            <th colspan="5" style="text-align: center;font-size: 20px; text-align: center">Datos Personales</th>
+                            <th colspan="5" style="text-align: center;font-size: 20px; text-align: center">Direccion</th>
+                            <th colspan="3" style="text-align: center;font-size: 20px; text-align: center">Datos empresariales</th>
+                            <th colspan="1" style="text-align: center;font-size: 20px; text-align: center">Modificar</th>
                         </tr>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Primer Nombre</th>
-                            <th scope="col">Segundo Nombre</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombres(s)</th>
                             <th scope="col">Aepllido Paterno</th>
                             <th scope="col">Apellido Materno</th>
-                            <th scope="col">Correo ElectrÛnico</th>
-                            <th scope="col">No. TelÈfono</th>
+                            <th scope="col">Correo Electr√≥nico</th>
+                            <th scope="col">No. Tel√©fono</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Municipio</th>
-                            <th scope="col">CÛdigo Postal</th>
+                            <th scope="col">C√≥digo Postal</th>
                             <th scope="col">Colonia</th>
                             <th scope="col">Calle</th>
                             <th scope="col">Puesto</th>
-                            <th scope="col">¡rea</th>
+                            <th scope="col">√Årea</th>
                             <th scope="col">Sueldo</th>
                             <th scope="col">Editar</th>
                         </tr>
                     </thead>
+                    <% while (datos1.next()) {%>
                     <tbody>
+
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Edgar</td>
-                            <td>Gabriel</td>
-                            <td>Hernandez</td>
-                            <td>Sanchez</td>
-                            <td>edgarfto@gmail.com</td>
-                            <td>5572779113</td>
-                            <td>Edo. de Mex.</td>
-                            <td>Tecamac</td>
-                            <td>55748</td>
-                            <td>Fracc. Santa Lucia</td>
-                            <td>Priv. Robles</td>
-                            <td>Jefe</td>
-                            <td>Ventas</td>
-                            <td>$25,000</td>
-                            <td><a href="jefes_modificar_empleados.jsp"><img src="../Icons/ic_create_white_36dp.png"></a></td>
+                            <td><% out.print(datos1.getString("id_usuario")); %></td>
+                            <td><% out.print(datos1.getString("nombre")); %></td>
+                            <td><% out.print(datos1.getString("apellido_paterno")); %></td>
+                            <td><% out.print(datos1.getString("apellido_materno")); %></td>
+                            <td><% out.print(datos1.getString("correo_electronico")); %></td>
+                            <td><% out.print(datos1.getString("no_telefono")); %></td>
+                            <td><% out.print(datos1.getString("estado")); %></td>
+                            <td><% out.print(datos1.getString("municipio")); %></td>
+                            <td><% out.print(datos1.getString("cp")); %></td>
+                            <td><% out.print(datos1.getString("colonia")); %></td>
+                            <td><% out.print(datos1.getString("calle")); %></td>
+                            <td><% out.print(datos1.getString("puesto")); %></td>
+                            <td><% out.print(datos1.getString("area")); %></td>
+                            <td><% out.print(datos1.getString("sueldo")); %></td>
+                            <td><a href="jefes_modificar_empleados.jsp?id_emple=<% out.print(datos1.getString("id_usuario")); %>"><img src="../Icons/ic_create_white_36dp.png"></a></td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Aletz</td>
-                            <td>Santiago</td>
-                            <td>Davila</td>
-                            <td>Menez</td>
-                            <td>aletz@gmail.com</td>
-                            <td>5599882272</td>
-                            <td>Edo. de Mex.</td>
-                            <td>Tecamac</td>
-                            <td>55748</td>
-                            <td>Fracc. Santa Lucia</td>
-                            <td>Priv. Robles</td>
-                            <td>Jefe</td>
-                            <td>Ventas</td>
-                            <td>$25,000</td>
-                            <td><a href="jefes_modificar_empleados.jsp"><img src="../Icons/ic_create_white_36dp.png"></a></td>
-                        </tr>
+                        <% }%>
                     </tbody>
                 </table>
             </div>
         </header>
 
-        <footer class="footer py-2 txt-xs-center">
+                    <footer class="footer py-2 txt-xs-center" style="width: 100%">
             <div class="container">
                 <p>2020? CARSALE.COM Todos los derechos reservados</p>
             </div>

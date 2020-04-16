@@ -45,7 +45,7 @@
                             String email=(String)sesion.getAttribute("email");
                             String id_usuario=(String)sesion.getAttribute("id_usuario");
                
-                            String id_empleado=request.getParameter("id_emple");
+                            String id_auto=request.getParameter("id_auto");
                             String password=request.getParameter("password");
                             
                             if(password!=null){
@@ -55,25 +55,23 @@
                                 String clave=validar_password1.getString("clave");
                                 
                                 if(password!=""+clave+""){
-                                    response.sendRedirect("ad_eliminar_empleado.jsp?id_emple="+id_empleado+"");
+                                    response.sendRedirect("ad_eliminar_automovil.jsp?id_auto="+id_auto+"");
                                     
                                 }else{
                                     out.print("<script>alert('Contraseña incorrecta, intenta otra vez')</script>");
                                 }
                                 
                             }
-                            String info="select * from usuario inner join empleado on usuario.id_usuario=empleado.id_usuario where usuario.id_usuario='"+id_empleado+"'";
+                            String info="select * from automovil where id_auto='"+id_auto+"'";
                             ResultSet info1 = sql.executeQuery(info);
                             info1.next();
-                            String nombre=info1.getString("nombre");
-                            String apellido=info1.getString("apellido_materno");
                             
                         %>
-                        <div class="card-header"><h3 style="text-align: center">Eliminar <% out.print(info1.getString("tipo_usuario")); %></h3></div><br>
+                        <div class="card-header"><h3 style="text-align: center">Eliminar Automovil</h3></div><br>
                         <div class="card-body">
-                            <form id="form1" action="admin_eliminar_empleado.jsp?id_emple=<% out.print(info1.getString("id_usuario")); %>" method="post" class="needs-validation">
+                            <form id="form1" action="admin_eliminar_automovil.jsp?id_auto=<% out.print(info1.getString("id_auto")); %>" method="post" class="needs-validation">
                                 <div style="text-align: center">
-                                    <h3>Se eliminará a <% out.print(info1.getString("nombre")+" "+info1.getString("apellido_paterno")); %></h3>
+                                    <h3>Se eliminará a <% out.print(info1.getString("marca")+" "+info1.getString("modelo")+" "+info1.getString("color")); %></h3>
                                 </div><br>
                                 <div style="text-align: center">
                                     <div class="col-4">
@@ -83,7 +81,7 @@
                                 </div><br><br>
                                 <div style="margin-left: 25%;">
                                     <button type="submit" class="btn btn-danger"  style="width: 25%">Eliminar</button>
-                                    <a href="../JSP1/admin_consultar_empleados.jsp"><button type="button" class="btn btn-success"  style="width: 25%;margin-left: 15%;">Cancelar</button></a>
+                                    <a href="../JSP1/admin_consultar_automovil.jsp"><button type="button" class="btn btn-success"  style="width: 25%;margin-left: 15%;">Cancelar</button></a>
                                 </div>
                             </form>
                         </div>

@@ -1,15 +1,9 @@
-<%-- 
-    Document   : jefes_consultar_autos
-    Created on : 31/03/2020, 15:46:45
-    Author     : UNAM
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="conexion.jsp" %>
 <!DOCTYPE html>
 <html lang="Spanish">
     <head>
-        <title>Consultar Empleado</title>
+        <title>Consultar Productos</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Font Awesome -->
@@ -35,9 +29,8 @@
                             <div class=" navg navbar-nav w-100 justify-content-center " >
                                 <a class="nav-item nav-link active" href="../index.html">Inicio</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
-                                <a class="nav-item nav-link" href="#">Catalogo</a>
+                                <a class="nav-item nav-link" href="../JSP1/jefes_catalogo_autos.jsp">Catalogo</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_jefes.jsp">Mi cuenta</a>
-                                <a class="nav-item nav-link" href="#">Contacto</a>
                             </div>
                         </div>
                     </nav>
@@ -47,64 +40,73 @@
                 <form action="jefes_consultar_empleados.jsp" method="post">
                     <select class="form-control form-control-sm" style="width: 30%; margin-left: 15%; margin-top: 2%;" name="filtro">
                         <option selected>Elige una opcion</option>
-                        <option value="sueldo">Marca</option>
-                        <option value="correo">Modelo</option>
-                        <option value="puesto">Color</option>
+                        <option value="sueldo">Nombre</option>
+                        <option value="correo">Cantidad</option>
+                        <option value="puesto">Precio</option>
                     </select>
                     <button type="button" class="btn btn-outline-primary" style="margin-left: 50%; margin-top: -6%; height: 40px;">Buscar</button>
                 </form>
                 <a href="index_jefes.jsp"><button type="button" class="btn btn-dark" style="margin-left: 70%; margin-top: -12%; height: 40px;">Regresar</button></a>
             </div>
-              <%                
-                String qry = "select * from automovil";
-                ResultSet datas = sql.executeQuery(qry);
+            <%
+               HttpSession sesion = request.getSession();
+               String email=(String)sesion.getAttribute("email");
+               String id_usuario=(String)sesion.getAttribute("id_usuario");
+                
+               String datos="select * from producto";
+               ResultSet datos1 = sql.executeQuery(datos);
             %>
-           
             <div style="display: inline-table">
-                <table class="table table-hover table-dark" style="position: absolute; width: 85%; margin-left: 7.5%;">
+                <table class="table table-hover table-dark" style="width: 150%; margin-left: 40%;">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th colspan="6" style="font-size: 20px; text-align: center">Datos estéticos del auto</th>
-                            
-                            <th colspan="5" style="font-size: 20px; text-align: center">Precio</th>
+                            <th scope="col"></th>
+                            <th colspan="6" style="text-align: center;font-size: 20px; text-align: center">Datos del producto</th>
                         </tr>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">No. serie</th>
-                            <th></th>
-                            <th scope="col">Modelo</th>
-                            <th></th>
-                            <th scope="col">Marca</th>
-                            <th></th>
-                            <th scope="col">Color</th>
-                            <th></th>
-                            <th scope="col">Subtotal</th>
-                            <th></th>
-                            <th scope="col">Total</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Contenido</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Detalles</th>
+                            <th scope="col">Editar</th>
                         </tr>
                     </thead>
-                    <% while (datas.next()) {%>
-                    
+                    <% while (datos1.next()) {%>
                     <tbody>
+
                         <tr>
-                             <td><% out.print(datas.getString(1)); %></td>
-                            <td><% out.print(datas.getString(2)); %></td>
-                            <td><% out.print(datas.getString(3)); %></td>
-                            <td><% out.print(datas.getString(4)); %></td>
-                            <td><% out.print(datas.getString(5)); %></td>
-                            <td><% out.print(datas.getString(7)); %></td>
-                           
-                            <td><a href="jefes_modificar_autos.jsp"><img src="../Icons/ic_create_white_36dp.png"></a></td>
+                            <td><% out.print(datos1.getString("id_producto")); %></td>
+                            <td><% out.print(datos1.getString("nombre")); %></td>
+                            <td><% out.print(datos1.getString("contenido")); %></td>
+                            <td><% out.print(datos1.getString("cantidad")); %></td>
+                            <td><% out.print(datos1.getString("precio")); %></td>
+                            <td><% out.print(datos1.getString("detalles")); %></td>
+                            <td><a href="jefes_modificar_producto.jsp?id_producto=<% out.print(datos1.getString("id_producto")); %>"><img src="../Icons/ic_create_white_36dp.png"></a></td>
                         </tr>
                         <% }%>
-                    
                     </tbody>
                 </table>
+                <!--<nav aria-label="..." style="background-color: #0099ff; width: 88.8%; margin-left: 5%; margin-bottom: 50px; margin-top: -1.1%">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>-->
             </div>
         </header>
 
-        <footer class="footer py-2 txt-xs-center">
+            <footer class="footer py-2 txt-xs-center" style="width: 100%">
             <div class="container">
                 <p>2020? CARSALE.COM Todos los derechos reservados</p>
             </div>
@@ -123,4 +125,3 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </body>
 </html>
-

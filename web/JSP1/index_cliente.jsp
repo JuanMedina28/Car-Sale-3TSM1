@@ -28,7 +28,7 @@
                             <div class=" navg navbar-nav w-100 justify-content-center " >
                                 <a class="nav-item nav-link active" href="../index.html">Inicio</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
-                                <a class="nav-item nav-link" href="../JSP1/catalogo_auto_cli.jsp">Catalogo</a>
+                                <a class="nav-item nav-link" href="../JSP1/cliente_catalogo_autos.jsp">Catalogo</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_cliente.jsp">Mi cuenta</a>
                                 <a class="nav-item nav-link" href="#">Contacto</a>
                             </div>
@@ -56,8 +56,15 @@
                             <form id="form1" action="#" method="post" class="needs-validation">
                                 <h4>Mi cuenta</h4>
                                 <div style="margin-left: 15%;">
-                                    <a href="cliente_consultar_cuenta.jsp"><button type="button" class="btn btn-success"  style="width: 25%">Consultar</button></a>
-                                    <a href="cliente_modificar_cuenta.jsp"><button type="button" class="btn btn-info"  style="width: 25%">Modificar</button></a>
+                                    <a href=""><button type="button" class="btn btn-success" disabled  style="width: 25%;">Registrar</button></a>
+                                    <a href="cliente_consultar_cuenta.jsp"><button type="button" class="btn btn-info"  style="width: 25%;">Consultar</button></a>
+                                    <a href="cliente_modificar_cuenta.jsp"><button type="button" class="btn btn-danger"  style="width: 25%">Modificar</button></a>
+                                </div><br>
+                                <h4>Citas</h4>
+                                <div style="margin-left: 15%;">
+                                    <a href="cliente_registrar_cita.jsp"><button type="button" class="btn btn-success"  style="width: 25%">Agendar</button></a>
+                                    <a href="cliente_consultar_citas.jsp"><button type="button" class="btn btn-info"  style="width: 25%">Consultar</button></a>
+                                    <a href="cliente_consultar_citas.jsp"><button type="button" class="btn btn-danger"  style="width: 25%">Reagendar</button></a>
                                 </div><br>
                             </form>
                             <a href="../JSP1/cerrar_sesion.jsp"><button type="button" class="btn btn-dark"  style="width: 25%">Cerrar Sesion</button></a>

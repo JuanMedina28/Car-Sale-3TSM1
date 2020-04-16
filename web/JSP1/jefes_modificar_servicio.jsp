@@ -1,14 +1,9 @@
-<%-- 
-    Document   : modificar_servicios
-    Created on : 2 abr. 2020, 14:27:28
-    Author     : asant
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="conexion.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Modificar Servicio</title>
+        <title>Registrar Servicio</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Font Awesome -->
@@ -34,8 +29,8 @@
                             <div class=" navg navbar-nav w-100 justify-content-center " >
                                 <a class="nav-item nav-link active" href="../index.html">Inicio</a>
                                 <a class="nav-item nav-link" href="../JSP1/index_servicios.jsp">Servicios</a>
-                                <a class="nav-item nav-link" href="../JSP1/index_admin.jsp">Mi cuenta</a>
-                                <a class="nav-item nav-link" href="#">Contacto</a>
+                                <a class="nav-item nav-link" href="../JSP1/jefes_catalogo_autos.jsp">Catalogo</a>
+                                <a class="nav-item nav-link" href="../JSP1/index_jefes.jsp">Mi cuenta</a>
                             </div>
                         </div>
                     </nav>
@@ -47,59 +42,65 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card shadow-lg p-3 mb-5 bg-white">
-                        <div class="card-header"><h3>Modificar un Servicio</h3></div>
+                        <div class="card-header"><h3>Registrar servicio</h3></div>
                         <div class="card-body">
-                            <form id="form1" action="#" method="post" class="needs-validation" onsubmit="return validar();">
+                            <%
+                                HttpSession sesion = request.getSession();
+                                String email=(String)sesion.getAttribute("email");
+                                String id_usuario=(String)sesion.getAttribute("id_usuario");
+                                
+                                String id_cita=request.getParameter("id_cita");
+                                String tp_estado=request.getParameter("tp_estado");
+                                String fecha_fin=request.getParameter("fecha_fin");
+                                String hora_fin=request.getParameter("hora_fin");
+                                
+                                if(tp_estado!=null){
+                                    String actualizar_servicio="update servicio set fecha_termino='"+fecha_fin+"', hora_termino='"+hora_fin+"', estatus='"+tp_estado+"', id_empleado='"+id_usuario+"' where id_cita='"+id_cita+"'";
+                                    sql.executeUpdate(actualizar_servicio);
+                                    out.print("<script>alert('Modificacion exitosa')</script>");
+                                    response.sendRedirect("jefes_consultar_servicios.jsp?filtro=null");
+                                }
+                                
+                                String datos="select * from cita inner join servicio on cita.id_cita=servicio.id_cita where cita.id_cita='"+id_cita+"'";
+                                ResultSet datos1=sql.executeQuery(datos);
+                                datos1.next();
+                            %>
+                            <form name="form1" id="form1" action="jefes_modificar_servicio.jsp?id_cita=<% out.print(datos1.getString("id_cita")); %>" method="post" class="needs-validation" onsubmit="return validar();">
                                 <div class="form-row">
                                     <div class="col-md4 mb-3">
-                                        <h4>Datos</h4>
+                                        <h4>Datos de la cita: <% out.print(datos1.getString("tipo_servicio")+" - "+datos1.getString("detalles")); %></h4>
                                         <div class="row">
                                             <div class="col">
-                                                <label for="fecha_i">Fecha de inicio</label>
-                                                <input name="fecha_i" type="date" class="form-control" id="fecha_i" value=""><br>
-                                            </div>
-                                            <div class="col">
-                                                <label for="hora_i">Hora de inicio</label>
-                                                <input name="hora_i" type="text" class="form-control" id="hora_i" value="">
-                                            </div>
-                                            <div class="col">
-                                                <label for="fecha_t">Fecha de termino</label>
-                                                <input name="fecha_t" type="date" class="form-control" id="fecha_t" value=""><br>
-                                            </div>
-                                            <div class="col">
-                                                <label for="hora_t">Hora de termino</label>
-                                                <input name="hora_t" type="text" class="form-control" id="hora_t" value="">
-                                            </div>
-                                   
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tipo de servicio</label>
-                                                <select class="custom-select my-1 mr-sm-2" id="dep" name="tipo">
+                                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tipo de estado</label>
+                                                <select class="custom-select my-1 mr-sm-2" id="tipo" name="tp_estado">
                                                     <option selected value="">Elige una opción</option>
-                                                    <option value="estetico">Estetico</option>
-                                                    <option value="motor">Motor</option>
-                                                </select>
+                                                    <option value="En proceso">En proceso</option>
+                                                    <option value="Realizado">Realizado</option>
+                                                </select><br>
                                             </div>
                                         </div><br>
                                         <div class="row">
-                                            <div class="col-4">
-                                                <label for="nombre">Nombre de servicio</label>
-                                                <input name="nom_servicio" type="text" class="form-control" id="nom_serv" value=""><br>
+                                            <div class="col">
+                                                <label for="nombre">Fecha de termino</label>
+                                                <input name="fecha_fin" type="date" class="form-control" min="<% out.print(datos1.getString("fecha_inicio")); %>" max="2021-12-31" value="<% out.print(datos1.getString("fecha_inicio")); %>"><br>
                                             </div>
-                                        </div><br>
+                                            <div class="col">
+                                                <label for="nombre">Hora de termino</label>
+                                                <input name="hora_fin" type="time" class="form-control" value="<% out.print(datos1.getString("hora_inicio")); %>" max="21:00:00" min="<% out.print(datos1.getString("hora_inicio")); %>" step="1"><br>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-danger" type="submit" >Actualizar servicio</button>
+                                <button class="btn btn-danger" type="submit">Modificar</button>
                             </form>
-
-                            <a href="index_admin.jsp"><button type="button" class="btn btn-dark"  style="width: 20%; margin-left: 30%; margin-top: -6.5%">Regresar</button></a>
+                            <a href="jefes_consultar_servicios.jsp?filtro=null"><button type="button" class="btn btn-dark"  style="width: 20%; margin-left: 25%; margin-top: -8%">Regresar</button></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-           
+
+
         <footer class="footer py-2 txt-xs-center">
             <div class="container">
                 <p>2020? CARSALE.COM Todos los derechos reservados</p>
@@ -117,6 +118,6 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
+
     </body>
 </html>
