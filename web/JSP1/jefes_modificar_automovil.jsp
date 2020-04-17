@@ -66,7 +66,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card shadow-lg p-3 mb-5 bg-white">
-                        <div class="card-header"><h3>Modificar un Automovil</h3></div>
+                        <div class="card-header"><h3>Modificar un Automóvil</h3></div>
                         <div class="card-body">
                             <form id="form1" action="jefes_modificar_automovil.jsp?id_auto=<% out.print(datos1.getString("id_auto")); %>" method="post" class="needs-validation" onsubmit="return validar();">
                                 <div class="form-row">
